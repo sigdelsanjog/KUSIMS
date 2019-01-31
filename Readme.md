@@ -28,7 +28,7 @@ What things you need to install the software and how to install them
 
 This project can be cloned from github repo:
 
-* ```git clone git@github.com:puncoz/Laravel-vue-spa-vuex.git```
+* ```git clone https://github.com/sigdelsanjog/KUSIMS.git```
 * ```cd Laravel-vue-spa-vuex```
 * ```cp .env.example .env```
 * ```php artisan key:generate```
