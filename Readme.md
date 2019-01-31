@@ -1,16 +1,5 @@
-# VueJs SPA using Laravel
+# Kathmandu University Student Information Management System
 
-This repo contains a single page application developed using VueJs and Laravel.
-
-Production Link : NA
-Staging Link : NA
-
-## Code Quality and Test Coverage
-
-Project is on [code climate](https://codeclimate.com/github/puncoz/Laravel-vue-spa-vuex).
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/2b8b29594c0e53c2d524/maintainability)](https://codeclimate.com/github/puncoz/Laravel-vue-spa-vuex/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/2b8b29594c0e53c2d524/test_coverage)](https://codeclimate.com/github/puncoz/Laravel-vue-spa-vuex/test_coverage)
 
 ## Getting Started
 
@@ -35,7 +24,7 @@ This project can be cloned from github repo:
 * Update .env to match your machine environment
 * ```composer install && yarn```
 * To compile js and sass assets:
-* ```yarn watch``` or ```yarn dev``` or ```yarn prod```
+* For Windows: ```npm watch``` or ```npm dev``` or ```npm prod``` 
 * use valet or configure Apache\Nginx server for serve or simply run by using laravel's serve functionility
 * ```php artisan serve```
 
