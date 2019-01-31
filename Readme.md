@@ -18,7 +18,9 @@ What things you need to install the software and how to install them
 This project can be cloned from github repo:
 
 * ```git clone https://github.com/sigdelsanjog/KUSIMS.git```
-* ```cd Laravel-vue-spa-vuex```
+* ```cd KUSIMS```
+* ```git checkout -b InitialV-1```
+* ```git pull origin InitialV-1```
 * ```cp .env.example .env```
 * ```php artisan key:generate```
 * Update .env to match your machine environment
