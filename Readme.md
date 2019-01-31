@@ -17,16 +17,16 @@ What things you need to install the software and how to install them
 
 This project can be cloned from github repo:
 
-* ```git clone https://github.com/sigdelsanjog/KUSIMS.git```
-* ```cd KUSIMS```
-* ```git checkout -b InitialV-1```
-* ```git pull origin InitialV-1```
+* ```git clone git@github.com:puncoz/Laravel-vue-spa-vuex.git```
+* ```cd Laravel-vue-spa-vuex```
 * ```cp .env.example .env```
+* ```Change the MySql Database Connection in .env file```
+* ```php artisan passport:install```
+* ```composer install && yarn```
 * ```php artisan key:generate```
 * Update .env to match your machine environment
-* ```composer install && yarn```
 * To compile js and sass assets:
-* For Windows: ```npm watch``` or ```npm dev``` or ```npm prod``` 
+* ```yarn watch``` or ```yarn dev``` or ```yarn prod```
 * use valet or configure Apache\Nginx server for serve or simply run by using laravel's serve functionility
 * ```php artisan serve```
 
