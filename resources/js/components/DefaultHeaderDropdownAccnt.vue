@@ -2,12 +2,12 @@
   <AppHeaderDropdown right no-caret>
     <template slot="header">
       <img :src="'img/profile.png'" class="img-avatar" alt="admin@bootstrapmaster.com">
-    </template>\
+    </template>
     <template slot="dropdown">
       <b-dropdown-header tag="div" class="text-center">
         <strong>Account</strong>
       </b-dropdown-header>
-      <b-dropdown-item>
+      <b-dropdown-item to="/profile">
         <i class="fa fa-user"/> Profile
       </b-dropdown-item>
       <b-dropdown-item>

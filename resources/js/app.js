@@ -20,6 +20,8 @@ var VueCookie = require('vue-cookie');
 // Tell Vue to use the plugin
 Vue.use(VueCookie);
 
+Vue.use(require('vue-moment'));
+
 const app = new Vue({
     el: "#app",
 

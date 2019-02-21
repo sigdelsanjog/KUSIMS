@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name','last_name', 'email', 'password','user_type','role_id',
     ];
 
     /**
@@ -38,4 +38,9 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($password);
     }
+    public function userProfile()
+    {
+        return $this->hasOne('App\UserProfile');
+    }
+
 }

@@ -27,6 +27,7 @@
         "node-sass": "^4.11.0",
         "v-toaster": "^1.0.3",
         "vue-cookie": "^1.1.4",
+        "vue-moment": "^4.0.0",
         "vue-router": "^3.0.1",
         "vuex": "^3.0.1"
     }

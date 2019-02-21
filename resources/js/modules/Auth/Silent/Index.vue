@@ -4,6 +4,7 @@ import Vue from "vue";
 export default {
   name: "Auth",
   mounted() {
+    
     let access_token = Vue.cookie.get("authentication");
     if (access_token !== null) {
       var self = this;

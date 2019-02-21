@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\UserProfile;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -104,23 +105,40 @@ class AuthController extends Controller
     public function register(Request $request): JsonResponse
     {
         $userData = $this->validate($request, [
-            'name'                  => 'required|string|max:255',
             'email'                 => 'required|string|email|max:255|unique:users',
             'password'              => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required',
+            'first_name'                  => 'required|string|max:255',
+            'last_name'                  => 'required|string|max:255',
+            'role_id' =>'required|integer',
+            'user_type'=>'required|integer'
         ]);
 
-        try {
-            $user          = app(User::class)->create($userData);
-            $user['token'] = $this->generateTokenForUser($user);
-        } catch (\Exception $exception) {
-            logger()->error($exception);
 
-            return response()->json([
-                'success' => false,
-                'message' => 'Unable to create new user.',
+            $user = app(User::class)->create($userData);
+            UserProfile::create([
+           
+                'first_name' => $request['first_name'],
+                'last_name' => $request['first_name'],
+                'user_id' => $user->id
             ]);
-        }
+            $user['token'] = $this->generateTokenForUser($user);
+
+        // try {
+        //     $user          = app(User::class)->create($userData);
+        //     app(UserProfile::class)->create(['user_id' => $user->id]);
+
+        //     $user['token'] = $this->generateTokenForUser($user);
+        // } catch (\Exception $exception) {
+            
+        // return response()->json($exception);
+        //     // logger()->error($exception);
+
+        //     // return response()->json([
+        //     //     'success' => false,
+        //     //     'message' => 'Unable to create new user.',
+        //     // ]);
+        // }
 
         return response()->json($user);
     }
@@ -131,7 +149,9 @@ class AuthController extends Controller
      */
     public function getCurrentUser(): User
     {
-        return request()->user();
+        return request()->user()->load('userProfile');
+        //->with('userProfile')->find(Auth::id());
+        //request()->user();
     }
 
     /**

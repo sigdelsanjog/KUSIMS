@@ -9,7 +9,10 @@ import {
     CreateAuthor,
     PageNotFound,
     UnAuthorized,
-    Silent
+    StudentList,
+    StudentCreate,
+    Silent,
+    Profile
 } from "../modules";
 import Store from "./../stores";
 
@@ -38,7 +41,36 @@ const routes = [
                 alias: "",
                 component: Dashboard,
                 name: "Dashboard"
-            }
+            },
+            {
+                path: "profile",
+                alias: "",
+                component: Profile,
+                name: "Profile"
+            },
+            {
+                path: 'student',
+                component: {
+                  render (c) { return c('router-view') }
+                },
+                children: [
+                  {
+                    path: '',
+                    meta: { label: 'Student List'},
+                    component: StudentList,
+                  },
+                  {
+                    path: 'create',
+                    component: StudentCreate,
+                  },
+                  {
+                    path: ':id',
+                    meta: { label: 'Student Details'},
+                    name: 'Student Edit',
+                    component: StudentCreate,
+                  },
+                ]
+              },
         ]
     },
     { path: "*", component: PageNotFound },

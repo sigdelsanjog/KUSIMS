@@ -1,4 +1,17 @@
 import Http from "axios";
+import Store from "./../stores";
+
+Http.interceptors.request.use(config => {
+    debugger;
+    const currentUser = Store.getters["global/currentUser"];
+    const isLoggedIn = Store.getters["global/isLoggedIn"];
+
+    if (isLoggedIn) {
+        config.headers.Authorization = `Bearer ${JSON.parse(currentUser).token}`;
+    }
+
+    return config;
+});
 
 class Api {
     async get(url, params = {}) {
@@ -17,11 +30,8 @@ class Api {
      * @param {*} data
      * @param {*} header
      */
-    async post(url, data, header = {}) {
-        const options = {
-            header
-        };
-        const response = await Http.post(url, data, options);
+    async post(url, data) {
+        const response = await Http.post(url, data);
 
         return response;
     }

@@ -7,3 +7,7 @@ export { default as PageNotFound } from "./Pages/PageNotFound";
 export { default as DashView } from "../components/Dash";
 
 export { default as UnAuthorized } from "./Pages/UnAuthorized";
+
+export { default as StudentList } from "./Student/Index";
+export { default as StudentCreate } from "./Student/Index";
+export { default as Profile } from "./Profile";

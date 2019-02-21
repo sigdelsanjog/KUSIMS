@@ -1,5 +1,6 @@
 export default {
     setCurrentUser(context, currentUser) {
+        
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
         context.commit("setCurrentUser", currentUser);
     },

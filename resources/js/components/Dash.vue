@@ -5,7 +5,7 @@
       <b-link class="navbar-brand" to="#">
         <img
           class="navbar-brand-full"
-          :src="'/img/ku-logo.png'"
+          :src="'/img/ku-mini-logo.png'"
           width="80"
           height="50"
           alt="CoreUI Logo"

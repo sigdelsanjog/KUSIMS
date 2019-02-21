@@ -11,8 +11,19 @@ export default {
         },
         {
             name: "Students",
-            url: "/students",
-            icon: "fas fa-user-graduate"
+            icon: "fas fa-user-graduate",
+            children: [
+                {
+                    name: "List Student",
+                    url: "/student",
+                    icon: "icon-puzzle"
+                },
+                {
+                    name: "Create Student",
+                    url: "/student/create",
+                    icon: "icon-puzzle"
+                }
+            ]
         },
         {
             name: "Profiles",

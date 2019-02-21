@@ -30,6 +30,12 @@ class AuthService {
 
         return response.data;
     }
+
+    async getCurrentUser() {
+        const response = await Api.get(route("api.auth.current-user"));
+
+        return response.data;
+    }
 }
 
 export default new AuthService();
