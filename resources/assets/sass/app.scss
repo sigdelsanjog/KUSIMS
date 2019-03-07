@@ -1,0 +1,23 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// @import 'node_modules/bootstrap/scss/bootstrap';
+// @import 'node_modules/bootstrap-vue/src/index.scss';
+
+// Icons
+@import '~simple-line-icons/css/simple-line-icons.css';
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+//@import '~admin-lte/dist/css/adminlte.css';
+@import '~@coreui/coreui/dist/css/coreui.min.css';
+
+@import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
+
+@import "~vue-snotify/styles/material"
