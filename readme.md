@@ -3,7 +3,7 @@
 
 ## Usage
 
-- Clone the repository with `git clone`
+- Clone the repository with `git clone https://github.com/sigdelsanjog/KUSIMS.git -b Code_V2`
 - Copy `.env.example` file to `.env` and edit database credentials there
 - Run `composer install`
 - Run `php artisan key:generate`
