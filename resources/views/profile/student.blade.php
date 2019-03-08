@@ -2,102 +2,131 @@
 
 @section('content')
 <b-card>
-        <div class="row">
-          <div class="col-lg-3 pb-5">
-            <!-- Account Sidebar-->
-            <div class="author-card pb-3">
-              <div class="author-card-profile">
-                <div class="author-card-avatar">
+   <div class="row">
+      <div class="col-lg-3 pb-5">
+         <!-- Account Sidebar-->
+         <div class="author-card pb-3">
+            <div class="author-card-profile">
+               <div class="author-card-avatar">
                   <img src="{{Auth::user()->student->image}}" alt="Daniel Adams">
-                </div>
-                <div class="author-card-details">
+               </div>
+               <div class="author-card-details">
                   <h5 class="author-card-name text-lg">{{ Auth::user()->email }}</h5>
                   <span
-                    class="author-card-position"
-                  >Joined {{ Auth::user()->created_at->format('M d, Y') }} </span>
-                </div>
-              </div>
+                     class="author-card-position"
+                     >Joined {{ Auth::user()->created_at->format('M d, Y') }} </span>
+               </div>
             </div>
-            <div class>
-              <b-list-group>
-                <b-list-group-item
+         </div>
+         <div class>
+            <b-list-group>
+               <b-list-group-item
                   class="d-flex justify-content-between align-items-center"
-                >Deparment
+                  >
+                  Deparment
                   <b-badge variant="info" pill>{{Auth::user()->student->department->name}}</b-badge>
-                </b-list-group-item>
-
-                <b-list-group-item class="d-flex justify-content-between align-items-center">Program
+               </b-list-group-item>
+               <b-list-group-item class="d-flex justify-content-between align-items-center">
+                  Program
                   <b-badge variant="info">{{Auth::user()->student->program->name}}</b-badge>
-                </b-list-group-item>
-
-                <b-list-group-item class="d-flex justify-content-between align-items-center">Batch
+               </b-list-group-item>
+               <b-list-group-item class="d-flex justify-content-between align-items-center">
+                  Batch
                   <b-badge variant="info">{{Auth::user()->student->batch->year}}</b-badge>
-                </b-list-group-item>
-								<b-list-group-item class="d-flex justify-content-between align-items-center">Registration Number
+               </b-list-group-item>
+               <b-list-group-item class="d-flex justify-content-between align-items-center">
+                  Registration Number
                   <b-badge variant="warning">{{Auth::user()->student->reg_no}}</b-badge>
-                </b-list-group-item>
-              </b-list-group>
+               </b-list-group-item>
+            </b-list-group>
+         </div>
+      </div>
+      <!-- Profile Settings-->
+      <div class="col-lg-9 pb-5">
+         <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+               <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Basic Profile</a>
+               <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Document</a>
+               <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Address</a>
             </div>
-          </div>
-          <!-- Profile Settings-->
-					<div class="col-lg-9 pb-5">
-					<nav>
-							<div class="nav nav-tabs" id="nav-tab" role="tablist">
-								<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Basic Profile</a>
-								<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Document</a>
-								<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
-							</div>
-						</nav>
-						<div class="tab-content" id="nav-tabContent">
-							<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-								<b-card title="Student Information">
-								<b-list-group>
-									<b-list-group-item
-										class="d-flex justify-content-between align-items-center"
-									>First Name
-										<b-badge variant="primary" pill>{{Auth::user()->student->first_name}}</b-badge>
-									</b-list-group-item>
-
-									<b-list-group-item
-										class="d-flex justify-content-between align-items-center"
-									>Middle Name
-										<b-badge variant="primary" pill>{{Auth::user()->student->middle_name}}</b-badge>
-									</b-list-group-item>
-
-									<b-list-group-item
-										class="d-flex justify-content-between align-items-center"
-									>Last Name
-										<b-badge variant="primary">{{Auth::user()->student->last_name}}</b-badge>
-									</b-list-group-item>
-									<b-list-group-item class="d-flex justify-content-between align-items-center">Email
-										<b-badge variant="primary">{{Auth::user()->student->email}}</b-badge>
-									</b-list-group-item>
-									<b-list-group-item
-										class="d-flex justify-content-between align-items-center"
-									>Date of Birth
-										<b-badge variant="primary">{{Auth::user()->student->date_of_birth}}</b-badge>
-									</b-list-group-item>
-									<b-list-group-item class="d-flex justify-content-between align-items-center">Gender
-										<b-badge variant="primary">{{Auth::user()->student->gender}}</b-badge>
-									</b-list-group-item>
-									<b-list-group-item class="d-flex justify-content-between align-items-center">Nationality
-										<b-badge variant="primary">{{Auth::user()->student->nationality}}</b-badge>
-									</b-list-group-item>
-								</b-list-group>
-							</b-card>
-							</div>
-							<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-							
-							<student-profile-doc id={{Auth::user()->student->id}}></student-profile-doc>
-							</div>
-							<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-							
-							
-							</div>
-						</div>
-					</div>
-        </div>
-      </b-card>
+         </nav>
+         <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+               <b-card title="Student Information">
+                  <b-list-group>
+                     <b-list-group-item
+                        class="d-flex justify-content-between align-items-center"
+                        >
+                        First Name
+                        <b-badge variant="primary" pill>{{Auth::user()->student->first_name}}</b-badge>
+                     </b-list-group-item>
+                     <b-list-group-item
+                        class="d-flex justify-content-between align-items-center"
+                        >
+                        Middle Name
+                        <b-badge variant="primary" pill>{{Auth::user()->student->middle_name}}</b-badge>
+                     </b-list-group-item>
+                     <b-list-group-item
+                        class="d-flex justify-content-between align-items-center"
+                        >
+                        Last Name
+                        <b-badge variant="primary">{{Auth::user()->student->last_name}}</b-badge>
+                     </b-list-group-item>
+                     <b-list-group-item class="d-flex justify-content-between align-items-center">
+                        Email
+                        <b-badge variant="primary">{{Auth::user()->student->email}}</b-badge>
+                     </b-list-group-item>
+                     <b-list-group-item
+                        class="d-flex justify-content-between align-items-center"
+                        >
+                        Date of Birth
+                        <b-badge variant="primary">{{Auth::user()->student->date_of_birth}}</b-badge>
+                     </b-list-group-item>
+                     <b-list-group-item class="d-flex justify-content-between align-items-center">
+                        Gender
+                        <b-badge variant="primary">{{Auth::user()->student->gender}}</b-badge>
+                     </b-list-group-item>
+                     <b-list-group-item class="d-flex justify-content-between align-items-center">
+                        Nationality
+                        <b-badge variant="primary">{{Auth::user()->student->nationality}}</b-badge>
+                     </b-list-group-item>
+                  </b-list-group>
+               </b-card>
+               <b-card title="Qualification">
+                  <table class="table b-table mt-3 table-hover table-bordered border">
+                     <thead>
+                        <tr>
+                           <td>Board</td>
+                           <td>Year of Completion</td>
+                           <td>Aggregate Percentage</td>
+                           <td>Symbol No</td>
+                           <td>Division</td>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        @foreach(Auth::user()->student->qualification as $qual)
+                        <tr>
+                           <td>{{ $qual->board }}</td>
+                           <td>{{ $qual->board }}</td>
+                           <td>{{ $qual->aggregate_percent }}</td>
+                           <td>{{ $qual->symbol_no }}</td>
+                           <td>{{ $qual->division }}</td>
+                        </tr>
+                        @endforeach
+                     </tbody>
+                  </table>
+               </b-card>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+               <student-profile-doc id={{Auth::user()->student->id}}></student-profile-doc>
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <student-address id={{Auth::user()->student->id}}></student-address>
+            </div>
+         </div>
+      </div>
+   </div>
+</b-card>
 @endsection
 <style scoped>
 body {

@@ -38594,6 +38594,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('profile-image', __webpack
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('student-document', __webpack_require__(364));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('student-profile-doc', __webpack_require__(365));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('student-address', __webpack_require__(403));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('student-qualification', __webpack_require__(406));
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app'
@@ -105107,7 +105108,37 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "width": "200",
       "alt": "avatar"
     }
-  })])]), _vm._v(" "), _c('vue-snotify')], 1)
+  }), _vm._v(" "), _c('div', {
+    staticClass: "card-block mt-2"
+  }, [_c('label', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "for": "my-file-selector"
+    }
+  }, [_c('input', {
+    staticStyle: {
+      "display": "none"
+    },
+    attrs: {
+      "id": "my-file-selector",
+      "type": "file"
+    },
+    on: {
+      "change": _vm.onFileChange
+    }
+  }), _vm._v("\n          Upload\n        ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "card-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-lg btn-success",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.uploadImage
+    }
+  }, [_c('i', {
+    staticClass: "fas fa-upload"
+  }), _vm._v(" Upload\n    ")])]), _vm._v(" "), _c('vue-snotify')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -119746,6 +119777,255 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       form_fields: {}
     };
+  }
+});
+
+/***/ }),
+/* 406 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(20)(
+  /* script */
+  __webpack_require__(408),
+  /* template */
+  __webpack_require__(407),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "C:\\Users\\Aakash\\Desktop\\AdminLte\\laravel-roles-permissions-manager\\resources\\assets\\js\\components\\StudentQualification.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] StudentQualification.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-22a612dc", Component.options)
+  } else {
+    hotAPI.reload("data-v-22a612dc", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 407 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_vm._v("\n  " + _vm._s(this.qitems) + "\n  "), _c('b-button', {
+    on: {
+      "click": _vm.addItem
+    }
+  }, [_vm._v("Add Degree")]), _vm._v(" "), _c('table', {
+    staticClass: "table b-table mt-3 table-hover table-bordered border"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.qitems), function(item, index) {
+    return _c('tr', {
+      key: index
+    }, [_c('td', [_c('b-form-select', {
+      attrs: {
+        "options": _vm.options,
+        "name": ("board_" + index)
+      },
+      model: {
+        value: (item.board),
+        callback: function($$v) {
+          _vm.$set(item, "board", $$v)
+        },
+        expression: "item.board"
+      }
+    })], 1), _vm._v(" "), _c('td', [_c('b-form-input', {
+      attrs: {
+        "options": _vm.options,
+        "name": ("year_of_completion_" + index)
+      },
+      model: {
+        value: (item.year_of_completion),
+        callback: function($$v) {
+          _vm.$set(item, "year_of_completion", $$v)
+        },
+        expression: "item.year_of_completion"
+      }
+    })], 1), _vm._v(" "), _c('td', [_c('b-form-input', {
+      attrs: {
+        "options": _vm.options,
+        "name": ("aggregate_percent" + index)
+      },
+      model: {
+        value: (item.aggregate_percent),
+        callback: function($$v) {
+          _vm.$set(item, "aggregate_percent", $$v)
+        },
+        expression: "item.aggregate_percent"
+      }
+    })], 1), _vm._v(" "), _c('td', [_c('b-form-input', {
+      attrs: {
+        "options": _vm.options,
+        "name": ("symbol_no_" + index)
+      },
+      model: {
+        value: (item.symbol_no),
+        callback: function($$v) {
+          _vm.$set(item, "symbol_no", $$v)
+        },
+        expression: "item.symbol_no"
+      }
+    })], 1), _vm._v(" "), _c('td', [_c('b-form-input', {
+      attrs: {
+        "options": _vm.options,
+        "name": ("division_" + index)
+      },
+      model: {
+        value: (item.division),
+        callback: function($$v) {
+          _vm.$set(item, "division", $$v)
+        },
+        expression: "item.division"
+      }
+    })], 1)])
+  }), 0)]), _vm._v(" "), _c('b-button', {
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.storeQualification
+    }
+  }, [_vm._v("Save Qualification")]), _vm._v(" "), _c('vue-snotify')], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('td', [_vm._v("Board")]), _vm._v(" "), _c('td', [_vm._v("Year of Completion")]), _vm._v(" "), _c('td', [_vm._v("Aggregate Percentage")]), _vm._v(" "), _c('td', [_vm._v("Symbol No")]), _vm._v(" "), _c('td', [_vm._v("Division")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-22a612dc", module.exports)
+  }
+}
+
+/***/ }),
+/* 408 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {
+    this.pullQAttachments();
+  },
+  data: function data() {
+    return {
+      // Note `isActive` is left out and will not appear in the rendered table
+      options: [{ value: "SLC", text: "SLC" }, { value: "10 +2", text: "+2" }],
+      qmodel: [],
+      board: null,
+      year_of_completion: null,
+      aggregate_percent: null,
+      symbol_no: null,
+      division: null,
+      fields: [{
+        key: "board",
+        label: "Board"
+      }, {
+        key: "year_of_completion",
+        label: "Year Of Completion"
+      }, "aggreagte_percent", "symbol_no", "division"],
+      qitems: []
+    };
+  },
+
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    addItem: function addItem() {
+      this.qitems.push({
+        id: null,
+        student_id: this.id,
+        board: this.board,
+        year_of_completion: this.year_of_completion,
+        aggregate_percent: this.aggregate_percent,
+        symbol_no: this.symbol_no,
+        division: this.division
+      });
+    },
+    storeQualification: function storeQualification() {
+      var _this = this;
+
+      axios.post("/student/qualification", this.qitems).then(function (response) {
+        _this.pullQAttachments();
+        _this.$snotify.success("Qualification updated Sucessfully", "Success");
+      }).catch(function (e) {
+        console.log(e);
+      });
+    },
+    pullQAttachments: function pullQAttachments() {
+      var _this2 = this;
+
+      axios.get("/student/getqualification/" + this.id).then(function (response) {
+        _this2.qitems = response.data;
+        _this2.qmodel.student_id = _this2.id;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 

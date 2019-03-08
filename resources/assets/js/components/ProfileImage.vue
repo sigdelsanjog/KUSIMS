@@ -12,19 +12,19 @@
           alt="avatar"
         >
         <img v-else :src="url" class="smallimg mx-auto rounded" width="200" alt="avatar">
-        <!-- <div class="card-block mt-2">
+        <div class="card-block mt-2">
           <label class="btn btn-primary" for="my-file-selector">
             <input id="my-file-selector" @change="onFileChange" type="file" style="display:none;">
             Upload
           </label>
-        </div>-->
+        </div>
       </div>
     </div>
-    <!-- <div class="card-footer">
+    <div class="card-footer">
       <button type="button" @click="uploadImage" class="btn btn-lg btn-success">
         <i class="fas fa-upload"></i> Upload
       </button>
-    </div>-->
+    </div>
     <vue-snotify/>
   </div>
 </template>

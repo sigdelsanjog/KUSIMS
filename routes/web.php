@@ -84,6 +84,10 @@ Route::post('/student/approveDoc', 'StudentsController@approveDoc');
 Route::get('/student/getaddress/{id}', 'StudentsController@pullStudentAddress');
 Route::post('/student/address', 'StudentsController@postStudentAddress');
 
+Route::get('/student/getqualification/{id}', 'StudentsController@pullStudentQualification');
+Route::post('/student/qualification', 'StudentsController@postStudentQualification');
+
+
 // Route::group(['middleware'=> 'web'],function(){
 //     Route::resource('school','\App\Http\Controllers\SchoolController');
 //     Route::post('school/{id}/update','\App\Http\Controllers\SchoolController@update');

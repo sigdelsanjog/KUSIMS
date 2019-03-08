@@ -6,6 +6,8 @@ use App\Models\Student;
 use App\Models\Department;
 use App\Models\StudentDocument;
 use App\Models\StudentAddress;
+use App\Models\StudentQualification;
+
 
 use App\Imports\StudentImport;
 
@@ -364,11 +366,6 @@ class StudentsController extends Controller
 
     public function postStudentAddress(Request $request)
     {
-        
-        //StudentAddress::firstOrCreate($request->all());
-
-       // StudentAddress::updateOrCreate(['id' => $request->id, $request]) ;
-
         StudentAddress::updateOrCreate(
         ['id' => $request->id], 
         [
@@ -401,5 +398,32 @@ class StudentsController extends Controller
         $studentDoc = StudentAddress::where('student_id', $id)->first();//->get();
         return response()->json($studentDoc);
     }
+
+    public function postStudentQualification(Request $request)
+    {
+        $data = $request->all();
+        //return response()->json($data);
+        foreach ($data as $qual) {
+
+        StudentQualification::updateOrCreate(
+            ['id' => $qual["id"]], 
+            [
+                'student_id'     => $qual["student_id"],
+                'board' => $qual["board"],// $data->get('year_of_completion'),
+                'symbol_no'    => $qual["symbol_no"],// $data->get("symbol_no"),
+                'aggregate_percent'   => $qual["aggregate_percent"],// $data->get('aggreagate_percent'),
+                'division'       => $qual["division"],
+                'year_of_completion' => $qual["year_of_completion"]// $data->get('division'),
+            ]);
+        }
+        //return response()->json($studentQualification);
+    }
+    public function pullStudentQualification($id)
+    {
+        $studentQualification = StudentQualification::where('student_id', $id)->get();
+        return response()->json($studentQualification);
+    }
+
+
     
 }

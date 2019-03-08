@@ -66,6 +66,12 @@ class Student extends Model
     {
         return $this->hasMany(StudentAddress::class);
     }
+    public function qualification()
+    {
+        return $this->hasMany(StudentQualification::class);
+    }
+
+    
 
     public function setDateOfBirthAttribute($input)
     {

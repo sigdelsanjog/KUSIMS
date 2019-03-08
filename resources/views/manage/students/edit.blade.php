@@ -14,6 +14,9 @@
          <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#address" role="tab" aria-controls="address">Address</a>
          </li>
+         <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#qualification" role="tab" aria-controls="qualification">Qualification</a>
+         </li>
       </ul>
       <div class="tab-content">
          <div class="tab-pane active show" id="home" role="tabpanel">
@@ -236,6 +239,9 @@
          </div>
          <div class="tab-pane" id="address" role="tabpanel">
             <student-address id={{$student->id }}></student-address>
+         </div>
+         <div class="tab-pane" id="qualification" role="tabpanel">
+            <student-qualification id={{$student->id }}></student-qualification>
          </div>
       </div>
    </div>
