@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\Department;
 use App\Models\StudentDocument;
+use App\Models\StudentAddress;
 
 use App\Imports\StudentImport;
 
@@ -125,7 +126,8 @@ class StudentsController extends Controller
             Excel::import($export, $request->file('file'));
             
         }
-        return redirect()->route('manage.students.index');
+
+        return redirect()->route('manage.students.index')->with('message','Record successfully saved!');;
     
     }
 
@@ -358,6 +360,46 @@ class StudentsController extends Controller
             'data' => $data,
             'errors' => []
         ), 200);
+    }
+
+    public function postStudentAddress(Request $request)
+    {
+        
+        //StudentAddress::firstOrCreate($request->all());
+
+       // StudentAddress::updateOrCreate(['id' => $request->id, $request]) ;
+
+        StudentAddress::updateOrCreate(
+        ['id' => $request->id], 
+        [
+            'student_id' => $request->student_id,
+            'primary_country' => $request->primary_country,
+            'primary_state' => $request->primary_state,
+            'primary_district' => $request->primary_district,
+            'primary_city' => $request->primary_city,
+            'primary_street' => $request->primary_street,
+            'ward_no' => $request->ward_no,
+            'house_no' => $request->house_no,
+            'primary_postal_address' => $request->primary_postal_address,
+            'temp_country' => $request->temp_country,
+            'temp_state' => $request->temp_state,
+            'temp_district' => $request->temp_district,
+            'temp_city' => $request->temp_city,
+            'temp_street' => $request->temp_street,
+            'temp_ward_no' => $request->temp_ward_no,
+            'temp_house_no' => $request->temp_house_no,
+            'temp_postal_address'=> $request->temp_postal_address
+        ]
+    );
+
+    
+
+    }
+    public function pullStudentAddress($id)
+    {
+
+        $studentDoc = StudentAddress::where('student_id', $id)->first();//->get();
+        return response()->json($studentDoc);
     }
     
 }

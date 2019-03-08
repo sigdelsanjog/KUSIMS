@@ -5,7 +5,7 @@
       id="job_id"
       v-model="jobId"
       :options="jobs"
-      disabled
+    
       class="form-control mb-3"
     >
       <!-- This slot appears above the options from 'options' prop -->

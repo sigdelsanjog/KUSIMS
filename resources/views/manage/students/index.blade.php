@@ -12,12 +12,12 @@
     @endcan
 
     @can('student_delete')
-    <p>
-        <ul class="list-inline">
-            <li><a href="{{ route('manage.students.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('manage.students.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
+
+       <ul class="list-inline">
+            <li class="list-inline-item"><a href="{{ route('manage.students.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
+            <li class="list-inline-item"><a href="{{ route('manage.students.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
         </ul>
-    </p>
+
     @endcan
 
 
@@ -37,14 +37,13 @@
                         <th>@lang('global.student.fields.first-name')</th>
                         <th>@lang('global.student.fields.middle-name')</th>
                         <th>@lang('global.student.fields.last-name')</th>
+                        <th>Reg No</th>
                         <th>@lang('global.student.fields.dept')</th>
-                       
+                        <th>Program</th>
+                        <th>@lang('global.student.fields.batch')</th>
                         <th>@lang('global.student.fields.mobile-phone')</th>
                         <th>@lang('global.student.fields.gender')</th>
-                      
-                        <th>@lang('global.student.fields.email')</th>
-                        <th>@lang('global.student.fields.date-of-birth')</th>
-                        <th>@lang('global.student.fields.batch')</th>
+                        <th>DOB</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -60,16 +59,16 @@
                                 @can('student_delete')
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
-
                                 <td field-key='first_name'>{{ $student->first_name }}</td>
                                 <td field-key='middle_name'>{{ $student->middle_name }}</td>
                                 <td field-key='last_name'>{{ $student->last_name }}</td>
+                                <td field-key='reg_no'>{{ $student->reg_no }}</td>
                                 <td field-key='department'>{{ $student->department->name ?? '' }}</td>
+                                <td field-key='program'>{{ $student->program->name ?? '' }}</td>
+                                <td field-key='batch'>{{ $student->batch->year ?? '' }}</td>
                                 <td field-key='mobile_phone'>{{ $student->mobile_phone }}</td>
                                 <td field-key='gender'>{{ $student->gender }}</td>
-                                <td field-key='email'>{{ $student->email }}</td>
                                 <td field-key='date_of_birth'>{{ $student->date_of_birth }}</td>
-                                <td field-key='batch'>{{ $student->batch->year ?? '' }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('student_delete')
@@ -78,7 +77,7 @@
                                         'method' => 'POST',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['manage.students.restore', $student->id])) !!}
-                                    {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                    {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-sm btn-success')) !!}
                                     {!! Form::close() !!}
                                 @endcan
                                     @can('student_delete')
@@ -87,7 +86,7 @@
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['manage.students.perma_del', $student->id])) !!}
-                                    {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-sm btn-danger')) !!}
                                     {!! Form::close() !!}
                                 @endcan
                                 </td>
@@ -105,7 +104,7 @@
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['manage.students.destroy', $student->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-sm btn-danger')) !!}
                                     {!! Form::close() !!}
                                     @endcan
                                 </td>

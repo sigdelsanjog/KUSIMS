@@ -23,7 +23,7 @@ class User extends Authenticatable
 
     protected $fillable = ['name', 'email', 'password', 'remember_token','user_type','first_name','last_name'];
     
-    public static $enum_user_type = ["Employee" => "Employee", "Student" => "Student", "Administrator" => "Administrator"];
+    public static $enum_user_type = ["Employee" => "Employee", "Student" => "Student", "Administrator" => "Administrator", "SuperAdmin" => "SuperAdmin"];
     
     /**
      * Hash password

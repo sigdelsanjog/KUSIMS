@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 
 class UserProfileController extends Controller
@@ -20,7 +20,10 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        return view('profile.student');
+        if(Auth::user()->user_type == "Student")
+            return view('profile.student');
+
+        return view('profile.employee');
     }
     //
 }

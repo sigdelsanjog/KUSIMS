@@ -9,10 +9,10 @@
             <a class="nav-link active show" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">General Information</a>
          </li>
          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Documents</a>
+            <a class="nav-link" data-toggle="tab" href="#document" role="tab" aria-controls="document" aria-selected="false">Documents</a>
          </li>
          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages">Messages</a>
+            <a class="nav-link" data-toggle="tab" href="#address" role="tab" aria-controls="address">Address</a>
          </li>
       </ul>
       <div class="tab-content">
@@ -231,10 +231,11 @@
                </div>
             </div>
          </div>
-         <div class="tab-pane" id="profile" role="tabpanel">
-         <student-document id={{$student->id }}>
+         <div class="tab-pane" id="document" role="tabpanel">
+            <student-document id={{$student->id }}>
          </div>
-         <div class="tab-pane" id="messages" role="tabpanel">
+         <div class="tab-pane" id="address" role="tabpanel">
+            <student-address id={{$student->id }}></student-address>
          </div>
       </div>
    </div>

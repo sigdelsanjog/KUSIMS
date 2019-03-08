@@ -148,7 +148,7 @@
                   </div>
                   <div class="card">
                      <div class="card-header">
-                        Guardian Infromation
+                        Guardian Information
                      </div>
                      <div class="card-body">
                         <div class="row">
@@ -221,6 +221,7 @@
             </div>
          </div>
          <div class="tab-pane" id="profile" role="tabpanel">
+
          </div>
          <div class="tab-pane" id="messages" role="tabpanel">
          </div>

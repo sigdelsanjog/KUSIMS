@@ -54,6 +54,9 @@ Vue.component('course', require('./components/Course.vue'));
 Vue.component('profile-image', require('./components/ProfileImage.vue'));
 Vue.component('student-document', require('./components/StudentDocument.vue'));
 Vue.component('student-profile-doc', require('./components/StudentProfileDoc.vue'));
+Vue.component('student-address', require('./components/StudentAddress.vue'));
+
+
 
 
 const app = new Vue({

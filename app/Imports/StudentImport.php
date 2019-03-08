@@ -69,14 +69,30 @@ class StudentImport implements ToCollection,WithHeadingRow
                 'mobile_phone'=>$row['mobile_phone'],
                 'reg_no'=>$row['reg_number'],
                 'gender'=>$row['gender'],
+                'gender'=>$row['nationality'],
                 'dept_id'=>$this->dept_id,
                 'batch_id'=>$this->batch_id,
                 'date_of_birth'=>  $this->transformDate($row['dob']),
                 'program_id'=>$this->program_id
             ]);
 
-            //dd($student);
-
+            $studentAddress =  $student->address()->create([
+                'primary_country'=> $row['primary_country'],
+                'primary_state'=> $row['primary_state'],
+                'primary_state'=> $row['primary_city'],       
+                'primary_district'=> $row['primary_district'],
+                'primary_street'=> $row['primary_street'],
+                'ward_no'=>$row['ward_no'],
+                'house_no'=>$row['house_no'],
+                'primary_postal_address'=>$row['primary_postal_address'],
+                'temp_country'=>$row['temp_country'],
+                'temp_state'=>$row['temp_state'],
+                'temp_city'=>$row['temp_city'],
+                'temp_street'=>  $row['temp_street'],
+                'temp_ward_no'=>$row['temp_ward_no'],
+                'temp_house_no'=>$row['temp_house_no'],
+                'temp_postal_address'=>$row['temp_postal_address']
+            ]);
             $doc = DocumentType::all()->map(function(DocumentType $doc) {
                 return [
                     'doc_type_id' => $doc->id
