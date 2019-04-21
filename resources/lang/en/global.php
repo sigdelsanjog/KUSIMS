@@ -104,6 +104,29 @@ return [
 			'description' => 'Description',
 		],
 	],
+	'hostel' => [
+		'title' => 'Hostel',
+		'fields' => [
+		],
+	],
+	
+	'hostelblock' => [
+		'title' => 'Hostel Block',
+		'fields' => [
+			'name' => 'Name',
+			'location' => 'Location',
+			'incharge' => 'Incharge',
+			'contact' => 'Contact',
+		],
+	],
+	
+	'hostelroom' => [
+		'title' => 'Hostel Room',
+		'fields' => [
+			'block' => 'Block',
+			'room' => 'Room',
+		],
+	],
 	'app_change_password' => 'Change password',
 	'app_create' => 'Create',
 	'app_save' => 'Save',

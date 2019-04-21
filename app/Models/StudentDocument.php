@@ -35,7 +35,7 @@ class StudentDocument extends Model
         $name = collect($docStaus)->where('id', $id)->first();
 
         return $name['name'];
-        }
+    }
 
     public function doctype(){
         return $this->belongsTo(DocumentType::class,'doc_type_id');

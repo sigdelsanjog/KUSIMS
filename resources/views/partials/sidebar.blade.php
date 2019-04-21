@@ -29,7 +29,11 @@
             </ul>
          </li>
          @endcan
-
+         <li class="nav-item">
+            <a class="nav-link active" href="/profile">
+            <i class="nav-icon fas fa-user text-warning"></i> Profile
+            </a>
+         </li>
          @can('setting_access')
          <li class="nav-divider"></li>
          <li class="nav-title">Settings</li>
@@ -80,11 +84,27 @@
             </ul>
          </li>
          @endcan
-         <li class="nav-item">
-            <a class="nav-link active" href="/profile">
-            <i class="nav-icon fas fa-user"></i> Profile
-            </a>
+         @can('hostel_access')
+         <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+            <i class="nav-icon fas fa-hotel text-success"></i></i>Hostel</a>
+            <ul class="nav-dropdown-items">
+               <li class="nav-item">
+                  <a class="nav-link" href="{{ route('hostel.block.index') }}" target="_top">
+                  <i class="nav-icon fas fa-th-large"></i>Block</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="{{ route('hostel.room.index') }}" target="_top">
+                  <i class="nav-icon fas fa-warehouse"></i>Room</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="{{ route('hostel.book.index') }}" target="_top">
+                  <i class="nav-icon fas fa-warehouse"></i>Booking</a>
+               </li>
+            </ul>
          </li>
+         @endcan
+
       </ul>
    </nav>
    <button class="sidebar-minimizer brand-minimizer" type="button"></button>

@@ -72,7 +72,7 @@
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('student_delete')
-                                                                        {!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'POST',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",

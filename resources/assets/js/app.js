@@ -56,6 +56,7 @@ Vue.component('student-document', require('./components/StudentDocument.vue'));
 Vue.component('student-profile-doc', require('./components/StudentProfileDoc.vue'));
 Vue.component('student-address', require('./components/StudentAddress.vue'));
 Vue.component('student-qualification', require('./components/StudentQualification.vue'));
+Vue.component('hostel-assign', require('./components/HostelAssign.vue'));
 
 
 

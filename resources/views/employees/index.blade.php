@@ -11,7 +11,7 @@
     @endcan
 
     @can('employee_delete')
-            <ul class="list-inline">
+        <ul class="list-inline">
             <li><a href="{{ route('setting.employees.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li>
             <li><a href="{{ route('setting.employees.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
         </ul>

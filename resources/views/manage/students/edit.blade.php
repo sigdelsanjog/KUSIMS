@@ -248,19 +248,19 @@
 </div>
 {!! Form::close() !!}
 @stop
-@section('javascript')
-@parent
-<script>
-   $(function(){
-       moment.updateLocale('{{ App::getLocale() }}', {
-           week: { dow: 1 } // Monday is the first day of the week
-       });
+@section('javascript') 
+    <script>
+
+        $(document).ready(function(){
+               moment.updateLocale('{{ App::getLocale() }}', {
+               week: { dow: 1 } // Monday is the first day of the week
+            });
+            
+            $('.date').datetimepicker({
+               format: "{{ config('app.date_format_moment') }}",
+               locale: "{{ App::getLocale() }}",
+            });
        
-       $('.date').datetimepicker({
-           format: "{{ config('app.date_format_moment') }}",
-           locale: "{{ App::getLocale() }}",
-       });
-       
-   });
-</script>
-@stop
+        });
+    </script>
+@endsection

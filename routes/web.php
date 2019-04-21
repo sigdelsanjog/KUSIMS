@@ -72,6 +72,22 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'manage', 'as' => 'manage.']
     Route::post('bulkstore', ['uses' => 'StudentsController@bulkstore', 'as' => 'students.bulkstore']); 
 });
 
+Route::group(['middleware' => ['auth'], 'prefix' => 'hostel', 'as' => 'hostel.'], function () {
+    Route::resource('block', 'HostelBlockController');
+    Route::resource('room', 'HostelRoomController');
+    Route::resource('book', 'HostelBookController');
+
+    Route::post('hostelblocks_mass_destroy', ['uses' => 'HostelBlockController@massDestroy', 'as' => 'block.mass_destroy']);
+    Route::post('hostelblocks_restore/{id}', ['uses' => 'HostelBlockController@restore', 'as' => 'block.restore']);
+    Route::delete('hostelblocks_perma_del/{id}', ['uses' => 'HostelBlockController@perma_del', 'as' => 'block.perma_del']);
+
+    Route::post('hostelrooms_mass_destroy', ['uses' => 'HostelRoomController@massDestroy', 'as' => 'room.mass_destroy']);
+    Route::post('hostelrooms_restore/{id}', ['uses' => 'HostelRoomController@restore', 'as' => 'room.restore']);
+    Route::delete('hostelrooms_perma_del/{id}', ['uses' => 'HostelRoomController@perma_del', 'as' => 'room.perma_del']);
+
+});
+
+
 Route::post('/manage/student/imageupload', 'StudentsController@imgUpload');
 Route::post('/setting/teacher/course', 'EmployeesController@assignCourse');
 // Route::post('/setting/teacher/removecourse', 'EmployeesController@deleteAssignCourse');
@@ -87,6 +103,9 @@ Route::post('/student/address', 'StudentsController@postStudentAddress');
 Route::get('/student/getqualification/{id}', 'StudentsController@pullStudentQualification');
 Route::post('/student/qualification', 'StudentsController@postStudentQualification');
 
+Route::get('/hostel/book_block', 'HostelBookController@pullHostelBlock');
+Route::get('/hostel/book_room', 'HostelBookController@pullHostelRoom');
+Route::post('/hostel/hostel_status', 'HostelBookController@postHostelStatus');
 
 // Route::group(['middleware'=> 'web'],function(){
 //     Route::resource('school','\App\Http\Controllers\SchoolController');

@@ -13,7 +13,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 @if (!is_null(Auth::user()->student))
-                    <img class="img-avatar mx-1" src="{{Auth::user()->student->image}}">
+                    <img class="img-avatar mx-1" src="/{{Auth::user()->student->image}}">
                 @else
                     <img class="img-avatar mx-1" src="{{Auth::user()->avatar_url}}">
                 @endif
