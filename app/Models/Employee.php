@@ -72,4 +72,7 @@ class Employee extends Model
         return $this->belongsTo(User::class, 'user_id')->withTrashed();
     }
     
+    public function course(){
+        return $this->hasMany(TeacherCourse::class, 'store_id','id');
+    }
 }

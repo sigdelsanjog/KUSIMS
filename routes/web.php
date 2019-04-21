@@ -7,7 +7,7 @@ $this->post('login', 'Auth\LoginController@login')->name('auth.login');
 $this->post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 Route::get('/redirect', 'Auth\LoginController@redirectToProvider');
 Route::get('profile', 'UserProfileController@index')->name('user.profile');
-
+Route::get('profile/teacher/course/{id}', 'UserProfileController@getCourses');
 
 Route::get('auth/google/callback', 'Auth\LoginController@handleProviderCallback');
 
@@ -90,22 +90,27 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'hostel', 'as' => 'hostel.']
 
 Route::post('/manage/student/imageupload', 'StudentsController@imgUpload');
 Route::post('/setting/teacher/course', 'EmployeesController@assignCourse');
+Route::post('/setting/teacher/course', 'EmployeesController@assignCourse');
 // Route::post('/setting/teacher/removecourse', 'EmployeesController@deleteAssignCourse');
 
 Route::delete('/setting/teacher/removecourse', 'EmployeesController@deleteAssignCourse');
 Route::get('/manage/student/studentdocs/{id}', 'StudentsController@getStudentDoc');
 Route::post('/student/docsupload', 'StudentsController@studentDocUpload');
 Route::post('/student/approveDoc', 'StudentsController@approveDoc');
-
 Route::get('/student/getaddress/{id}', 'StudentsController@pullStudentAddress');
 Route::post('/student/address', 'StudentsController@postStudentAddress');
 
+
+
+Route::get('/student/getmarks/{id}', 'StudentsController@pullStudentMarks');
 Route::get('/student/getqualification/{id}', 'StudentsController@pullStudentQualification');
 Route::post('/student/qualification', 'StudentsController@postStudentQualification');
 
 Route::get('/hostel/book_block', 'HostelBookController@pullHostelBlock');
 Route::get('/hostel/book_room', 'HostelBookController@pullHostelRoom');
 Route::post('/hostel/hostel_status', 'HostelBookController@postHostelStatus');
+
+Route::post('/employee/marksupload', 'EmployeesController@bulkStoreMarks');
 
 // Route::group(['middleware'=> 'web'],function(){
 //     Route::resource('school','\App\Http\Controllers\SchoolController');

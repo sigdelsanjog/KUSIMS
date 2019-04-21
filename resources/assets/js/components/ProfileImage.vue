@@ -45,7 +45,7 @@ export default {
       this.uploadFile = file;
     },
     uploadImage() {
-      debugger;
+   
       let formdata = new FormData();
       formdata.append("image", this.uploadFile);
       formdata.append("id", this.id);

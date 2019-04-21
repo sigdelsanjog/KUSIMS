@@ -59,12 +59,20 @@
 									<b-list-group-item class="d-flex justify-content-between align-items-center">Email
 										<b-badge variant="primary">{{Auth::user()->employee->email}}</b-badge>
 									</b-list-group-item>
+     
 								</b-list-group>
+            
+
+  
 							</b-card>
 							</div>
 						</div>
 					</div>
         </div>
+      </b-card>
+      <b-card>
+          <teachercourses teacher-id="{{Auth::user()->employee->id}}"/>
+          
       </b-card>
 @endsection
 <style scoped>
@@ -173,7 +181,6 @@ body {
 .mx-1 {
   margin-right: 0.25rem !important;
 }
-
 .list-group-item.active:not(.disabled) {
   border-color: #e7e7e7;
   background: #fff;
@@ -184,12 +191,10 @@ body {
 .list-group-flush:last-child .list-group-item:last-child {
   border-bottom: 0;
 }
-
 .list-group-flush .list-group-item {
   border-right: 0 !important;
   border-left: 0 !important;
 }
-
 .list-group-flush .list-group-item {
   border-right: 0;
   border-left: 0;
@@ -236,7 +241,6 @@ a.list-group-item,
 .list-group-item.active:not(.disabled)::before {
   background-color: #ac32e4;
 }
-
 .list-group-item::before {
   display: block;
   position: absolute;

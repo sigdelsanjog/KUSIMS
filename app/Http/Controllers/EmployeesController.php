@@ -6,12 +6,15 @@ use App\Models\Employee;
 use App\Models\Jobtype;
 use App\Models\Department;
 use App\Models\TeacherCourse;
+use App\Imports\MarksImport;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\StoreEmployeesRequest;
 use App\Http\Requests\Settings\UpdateEmployeesRequest;
+
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmployeesController extends Controller
 {
@@ -256,6 +259,17 @@ class EmployeesController extends Controller
     
         catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
+        }
+    }
+    public function bulkStoreMarks(Request $request)
+    {    
+        if($request->hasFile('file')){
+            $fileData = $request->file('file');
+            $export = new MarksImport();
+            $export->setParameter($request['course_id']);
+          
+            Excel::import($export, $request->file('file'));
+            
         }
     }
 }

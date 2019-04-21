@@ -8,7 +8,8 @@
          <div class="author-card pb-3">
             <div class="author-card-profile">
                <div class="author-card-avatar">
-                  <img src="{{Auth::user()->student->image}}" alt="Daniel Adams">
+                  <img src="{{asset(Auth::user()->student ? Auth::user()->student->image : '')}}" alt="Daniel Adams">
+                 
                </div>
                <div class="author-card-details">
                   <h5 class="author-card-name text-lg">{{ Auth::user()->email }}</h5>
@@ -48,6 +49,7 @@
                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Basic Profile</a>
                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Document</a>
                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Address</a>
+               <a class="nav-item nav-link" id="nav-marks-tab" data-toggle="tab" href="#nav-marks" role="tab" aria-controls="nav-marks" aria-selected="false">Marks</a>
             </div>
          </nav>
          <div class="tab-content" id="nav-tabContent">
@@ -122,6 +124,9 @@
             </div>
             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <student-address id={{Auth::user()->student->id}}></student-address>
+            </div>
+            <div class="tab-pane fade" id="nav-marks" role="tabpanel" aria-labelledby="nav-marks-tab">
+                <student-marks id={{Auth::user()->student->id}}></student-marks>
             </div>
          </div>
       </div>

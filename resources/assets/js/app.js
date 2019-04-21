@@ -48,6 +48,7 @@ Vue.use(Snotify, options)
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+Vue.component('teachercourses', require('./components/ProfileTeacherCourse.vue'));
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('course', require('./components/Course.vue'));
@@ -57,9 +58,7 @@ Vue.component('student-profile-doc', require('./components/StudentProfileDoc.vue
 Vue.component('student-address', require('./components/StudentAddress.vue'));
 Vue.component('student-qualification', require('./components/StudentQualification.vue'));
 Vue.component('hostel-assign', require('./components/HostelAssign.vue'));
-
-
-
+Vue.component('student-marks', require('./components/StudentMarks.vue'));
 
 const app = new Vue({
     el: '#app'

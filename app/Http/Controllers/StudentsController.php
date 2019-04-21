@@ -7,6 +7,7 @@ use App\Models\Department;
 use App\Models\StudentDocument;
 use App\Models\StudentAddress;
 use App\Models\StudentQualification;
+use App\Models\Marks;
 
 
 use App\Imports\StudentImport;
@@ -423,7 +424,21 @@ class StudentsController extends Controller
         $studentQualification = StudentQualification::where('student_id', $id)->get();
         return response()->json($studentQualification);
     }
-
+    public function pullStudentMarks($id)
+    {
+        $studentMarks = Marks::where('student_id', $id)->get();
+        $marks = $studentMarks->map(function ($docs) 
+        {
+            return [ 
+                    'id' => $docs->id,
+                    'course_code' =>$docs->courseType->code,
+                    'course_name' =>$docs->courseType->name,
+                    'attendance' => $docs->attendance,
+                    'marks' => $docs->marks,
+                ];
+        });
+        return response()->json($marks);
+    }
 
     
 }

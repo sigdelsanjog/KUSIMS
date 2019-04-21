@@ -17,6 +17,9 @@
          <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#qualification" role="tab" aria-controls="qualification">Qualification</a>
          </li>
+         <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#marks" role="tab" aria-controls="marks">Marks</a>
+         </li>
       </ul>
       <div class="tab-content">
          <div class="tab-pane active show" id="home" role="tabpanel">
@@ -56,6 +59,16 @@
                                     {{ $errors->first('program_id') }}
                                 </p>
                             @endif
+                        </div>
+                        <div class="form-group">
+                              {!! Form::label('reg_no', trans('global.student.fields.reg-no').'*', ['class' => 'control-label']) !!}
+                              {!! Form::text('reg_no', old('reg_no'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                              <p class="help-block"></p>
+                              @if($errors->has('reg_no'))
+                              <p class="help-block">
+                                 {{ $errors->first('reg_no') }}
+                              </p>
+                              @endif
                         </div>
                      </div>
                   </div>
@@ -243,6 +256,10 @@
          <div class="tab-pane" id="qualification" role="tabpanel">
             <student-qualification id={{$student->id }}></student-qualification>
          </div>
+         <div class="tab-pane" id="marks" role="tabpanel">
+            <student-marks id={{$student->id }}></student-marks>
+         </div>
+     
       </div>
    </div>
 </div>

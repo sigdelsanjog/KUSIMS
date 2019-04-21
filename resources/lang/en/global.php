@@ -94,7 +94,8 @@ return [
 			'email' => 'Email',
 			'date-of-birth' => 'Date of birth',
 			'batch' => 'Batch',
-			'dept' => 'Department'
+			'dept' => 'Department',
+			'reg-no' => 'Registration Number'
 		],
 	],
 	'program' => [

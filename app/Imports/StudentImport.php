@@ -69,7 +69,7 @@ class StudentImport implements ToCollection,WithHeadingRow
                 'mobile_phone'=>$row['mobile_phone'],
                 'reg_no'=>$row['reg_number'],
                 'gender'=>$row['gender'],
-                'gender'=>$row['nationality'],
+                'nationality'=>$row['nationality'],
                 'dept_id'=>$this->dept_id,
                 'batch_id'=>$this->batch_id,
                 'date_of_birth'=>  $this->transformDate($row['dob']),

@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{this.qitems}}
     <b-button @click="addItem">Add Degree</b-button>
     <table class="table b-table mt-3 table-hover table-bordered border">
       <thead>
