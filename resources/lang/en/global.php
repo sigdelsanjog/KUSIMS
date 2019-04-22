@@ -139,6 +139,9 @@ return [
 			'room' => 'Room',
 		],
 	],
+	'buspage' => [
+		'title' => 'Bus Page',
+	],
 	'app_change_password' => 'Change password',
 	'app_create' => 'Create',
 	'app_save' => 'Save',

@@ -111,6 +111,17 @@
          </li>
          @endcan
 
+
+
+@can('hostel_access')
+         <li class="nav-item">
+            <a class="nav-link" href="{{route('busAdmin')}}">
+            <i class="nav-icon fas fa-bus text-success"></i></i>BUS</a>
+         </li>
+
+         @endcan
+
+
       </ul>
    </nav>
    <button class="sidebar-minimizer brand-minimizer" type="button"></button>
