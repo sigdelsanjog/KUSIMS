@@ -13,7 +13,16 @@ class CreateTableNotice extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('notice', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('user_id');
+            $table->string('title');
+            $table->string('description');
+            $table->string('user_type');
+            $table->date('from_date');
+            $table->date('to_date');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +32,6 @@ class CreateTableNotice extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('notice');
     }
 }

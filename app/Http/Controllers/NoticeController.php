@@ -6,11 +6,11 @@ use App\Models\Notice;
 
 use App\User;
 
+use Auth;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Settings\StoreJobtypesRequest;
-use App\Http\Requests\Settings\UpdateJobtypesRequest;
 
 class NoticeController extends Controller
 {
@@ -59,14 +59,30 @@ class NoticeController extends Controller
      * @param  \App\Http\Requests\StoreJobtypesRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreJobtypesRequest $request)
+    public function store(Request $request)
     {
+
         if (! Gate::allows('notice_create')) {
             return abort(401);
         }
-        $notice = Notice::create($request->all());
+        $request->validate([
+            'title'=>'required',
+            'description'=> 'required',
+            'user_type' => 'required',
+            'from_date' =>'required|date',
+            'to_date' =>'required|date'
+          ]);
 
-
+        $notice = new notice([
+            'user_id' => Auth::user()->id,
+            'title'=> $request->post('title'),
+            'description'=> $request->post('description'),
+            'user_type'=> $request->post('user_type'),
+            'from_date'=> $request->post('from_date'),
+            'to_date'=>$request->post('to_date'),
+         ]);
+        
+        $notice->save();
 
         return redirect()->route('notice.index');
     }
