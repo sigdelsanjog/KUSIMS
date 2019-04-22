@@ -70,6 +70,9 @@ class Student extends Model
     {
         return $this->hasMany(StudentQualification::class);
     }
+    public function hostel(){
+        return $this->hasMany(HostelBook::class);
+    }
 
     public function setDateOfBirthAttribute($input)
     {

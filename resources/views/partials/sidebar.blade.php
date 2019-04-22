@@ -34,6 +34,12 @@
             <i class="nav-icon fas fa-user text-warning"></i> Profile
             </a>
          </li>
+         <li class="nav-item">
+            <a class="nav-link active" href="/notice">
+            <i class="nav-icon fas fa-bullhorn text-info"></i> Notice
+            </a>
+         </li>
+
          @can('setting_access')
          <li class="nav-divider"></li>
          <li class="nav-title">Settings</li>

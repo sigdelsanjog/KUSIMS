@@ -23,7 +23,7 @@
                 <b-list-group-item
                   class="d-flex justify-content-between align-items-center"
                 >Deparment
-                  <b-badge variant="info" pill>{{Auth::user()->employee->department->name}}</b-badge>
+                  <b-badge variant="info" pill>{{Auth::user()->employee ? Auth::user()->employee->department->name : "Not Defined"}}</b-badge>
                 </b-list-group-item>
               </b-list-group>
             </div>
@@ -42,22 +42,22 @@
 									<b-list-group-item
 										class="d-flex justify-content-between align-items-center"
 									>First Name
-										<b-badge variant="primary" pill>{{Auth::user()->employee->first_name}}</b-badge>
+										<b-badge variant="primary" pill>{{Auth::user()->first_name}}</b-badge>
 									</b-list-group-item>
 
 									<b-list-group-item
 										class="d-flex justify-content-between align-items-center"
 									>Middle Name
-										<b-badge variant="primary" pill>{{Auth::user()->employee->middle_name}}</b-badge>
+										<b-badge variant="primary" pill>{{Auth::user()->middle_name}}</b-badge>
 									</b-list-group-item>
 
 									<b-list-group-item
 										class="d-flex justify-content-between align-items-center"
 									>Last Name
-										<b-badge variant="primary">{{Auth::user()->employee->last_name}}</b-badge>
+										<b-badge variant="primary">{{Auth::user()->last_name}}</b-badge>
 									</b-list-group-item>
 									<b-list-group-item class="d-flex justify-content-between align-items-center">Email
-										<b-badge variant="primary">{{Auth::user()->employee->email}}</b-badge>
+										<b-badge variant="primary">{{Auth::user()->email}}</b-badge>
 									</b-list-group-item>
      
 								</b-list-group>
@@ -71,8 +71,10 @@
         </div>
       </b-card>
       <b-card>
-          <teachercourses teacher-id="{{Auth::user()->employee->id}}"/>
-          
+        @if(!is_null(Auth::user()->employee)){
+          <teachercourses teacher-id="{{Auth::user()->employee->id}}"/> 
+        } 
+        @endif
       </b-card>
 @endsection
 <style scoped>

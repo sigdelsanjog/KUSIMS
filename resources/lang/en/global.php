@@ -98,6 +98,7 @@ return [
 			'reg-no' => 'Registration Number'
 		],
 	],
+
 	'program' => [
 		'title' => 'Program',
 		'fields' => [
@@ -108,6 +109,16 @@ return [
 	'hostel' => [
 		'title' => 'Hostel',
 		'fields' => [
+		],
+	],
+	'notice' => [
+		'title' => 'Notice',
+		'fields' => [
+			'title' => 'Title',
+			'description' => 'Description',
+			'user-type' => 'User Type',
+			'from-date' => 'From Date',
+			'to-date' => 'To Date'
 		],
 	],
 	

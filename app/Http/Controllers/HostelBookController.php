@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 use App\Models\HostelBook;
 use App\Models\Hostelblock;
 use App\Models\Hostelroom;
+use Auth;
 
 use Illuminate\Http\Request;
 class HostelBookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         // if (! Gate::allows('hostelbook_access')) {
@@ -28,15 +34,26 @@ class HostelBookController extends Controller
     }
     public function create()
     {
-        $hostelBook = new HostelBook();
-
-        $hostelBook->student_id = "35";
-        $hostelBook->status = "1";
-
-        $hostelBook->save();
+       
         return redirect()->route('hostel.book.index');
     }
+    public function store(Request $request)
+    {
 
+        $hostelBooks = HostelBook::where('student_id', '=', Auth::user()->student->id)->first();
+
+        if(is_null($hostelBooks)){
+            
+            $hostelBook = new HostelBook();
+            $hostelBook->student_id = Auth::user()->student->id;
+            $hostelBook->status = "1";
+    
+            $hostelBook->save();
+            
+            return redirect()->back()->with('message', 'Hostel Applied Successfully!');
+        }
+        return redirect()->back()->with('message', 'Hostel Applied Already!');
+    }
     public function show($id)
     {
         // if (! Gate::allows('hostelroom_view')) {

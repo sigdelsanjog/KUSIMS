@@ -20,6 +20,9 @@
          <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#marks" role="tab" aria-controls="marks">Marks</a>
          </li>
+         <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#hostel" role="tab" aria-controls="hostel">Hostel</a>
+         </li>
       </ul>
       <div class="tab-content">
          <div class="tab-pane active show" id="home" role="tabpanel">
@@ -258,6 +261,27 @@
          </div>
          <div class="tab-pane" id="marks" role="tabpanel">
             <student-marks id={{$student->id }}></student-marks>
+         </div>
+         <div class="tab-pane" id="hostel" role="tabpanel">
+                  <table class="table b-table mt-3 table-hover table-bordered border">
+                              <thead>
+                                 <tr>
+                                    <td>Hostel Status</td>
+                                    <td>Room</td>
+                                    <td>Block</td>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 @foreach($student->hostel as $hos)
+                                 <tr>
+                                    <td>{{ $hos->hostelStatus($hos->status) }}</td>
+                                    <td>{{ $hos->hostel ? $hos->hostel->room : "" }}</td>
+                                    <td>{{ $hos->hostel ? $hos->hostel->block->name : "" }}</td>
+                                    
+                                 </tr>
+                                 @endforeach
+                              </tbody>
+                  </table>
          </div>
      
       </div>

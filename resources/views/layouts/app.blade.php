@@ -13,8 +13,11 @@
                     <div class="animated fadeIn">
                         @include('partials.breadcrumb')          
                             @if (Session::has('message'))
-                                <div class="note note-info">
-                                    <p>{{ Session::get('message') }}</p>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    {{ Session::get('message') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
                             @endif
                             @if ($errors->count() > 0)

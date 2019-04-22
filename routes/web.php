@@ -118,3 +118,9 @@ Route::post('/employee/marksupload', 'EmployeesController@bulkStoreMarks');
 //     Route::get('school/{id}/delete','\App\Http\Controllers\SchoolController@destroy');
 //     Route::get('school/{id}/deleteMsg','\App\Http\Controllers\SchoolController@DeleteMsg');
 //   });
+
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('notice', 'NoticeController');
+});

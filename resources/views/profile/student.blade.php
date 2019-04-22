@@ -118,6 +118,35 @@
                      </tbody>
                   </table>
                </b-card>
+               <b-card title="Hostel">
+                     @if(is_null(Auth::user()->student->hostel))
+                     <b-list-group-item class="d-flex justify-content-between align-items-left">
+                        <b-button variant="success" href="{{ route('hostel.book.store') }}" 
+                        onclick="event.preventDefault(); 
+                        document.getElementById('hostel-form').submit();" size="sm">Apply Hostel</b-button>
+                     </b-list-group-item>
+                     @else
+                           <table class="table b-table mt-3 table-hover table-bordered border">
+                              <thead>
+                                 <tr>
+                                    <td>Hostel Status</td>
+                                    <td>Room</td>
+                                    <td>Block</td>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 @foreach(Auth::user()->student->hostel as $hos)
+                                 <tr>
+                                    <td>{{ $hos->hostelStatus($hos->status) }}</td>
+                                    <td>{{ $hos->hostel ? $hos->hostel->room : "" }}</td>
+                                    <td>{{ $hos->hostel ? $hos->hostel->block->name : "" }}</td>
+                                    
+                                 </tr>
+                                 @endforeach
+                              </tbody>
+                           </table>
+                     @endif
+               </b-card>
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                <student-profile-doc id={{Auth::user()->student->id}}></student-profile-doc>
@@ -131,6 +160,9 @@
          </div>
       </div>
    </div>
+   <form id="hostel-form" action="{{ route('hostel.book.store') }}" method="POST" style="display: none;">
+        {{ csrf_field() }}
+   </form>
 </b-card>
 @endsection
 <style scoped>
