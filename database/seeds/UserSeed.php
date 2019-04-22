@@ -19,7 +19,16 @@ class UserSeed extends Seeder
             'first_name'=>'Aakash',
             'last_name'=>'Bashyal'
         ]);
+        
         $user->assignRole('administrator');
+        
+        $employee = Employee::create([
+            'first_name'=>'Aakash',
+            'last_name'=>'Bashyal',
+            'email' => 'admin@admin.com'
+        ]);
+        
+        $user->employee()->save($employee);
 
     }
 }

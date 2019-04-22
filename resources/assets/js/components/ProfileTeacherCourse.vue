@@ -40,6 +40,7 @@
         >Marks Upload</button>
       </div>
     </b-table>
+    <vue-snotify/>
   </div>
 </template>
 
@@ -56,16 +57,18 @@ export default {
     },
     onFileChange(e) {
       const file = e.target.files[0];
-      this.image = null;
-      this.url = URL.createObjectURL(file);
       this.uploadFile = file;
     },
     formSubmit() {
       let formdata = new FormData();
+      if (!this.uploadFile) {
+        this.$snotify.error("Please select the file", "Warning");
+        return 0;
+      }
       formdata.append("file", this.uploadFile);
       formdata.append("course_id", this.course_id);
-      axios 
-      .post('/employee/marksupload', formdata, {
+      axios
+        .post("/employee/marksupload", formdata, {
           headers: {
             "Content-Type": "multipart/form-data"
           }
