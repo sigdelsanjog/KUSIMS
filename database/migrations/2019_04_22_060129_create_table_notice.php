@@ -22,6 +22,10 @@ class CreateTableNotice extends Migration
             $table->date('from_date');
             $table->date('to_date');
             $table->timestamps();
+ 
+            $table->softDeletes();
+
+            $table->index(['deleted_at']);
         });
     }
 

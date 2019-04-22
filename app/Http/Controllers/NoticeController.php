@@ -30,12 +30,12 @@ class NoticeController extends Controller
             if (! Gate::allows('notice_delete')) {
                 return abort(401);
             }
-            $notice = Notice::onlyTrashed()->get();
+            $notices = Notice::onlyTrashed()->get();
         } else {
-            $notice = Notice::all();
+            $notices = Notice::all();
         }
 
-        return view('notice.index', compact('notice'));
+        return view('notice.index', compact('notices'));
     }
 
     /**
