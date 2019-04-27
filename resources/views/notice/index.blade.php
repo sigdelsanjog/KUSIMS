@@ -35,6 +35,9 @@
 
                         <th>@lang('global.notice.fields.title')</th>
                         <th>@lang('global.notice.fields.description')</th>
+                        <th>@lang('global.notice.fields.from-date')</th>
+                        <th>@lang('global.notice.fields.to-date')</th>
+                        <th>Notice For</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -53,6 +56,9 @@
 
                                 <td field-key='title'>{{ $notice->title }}</td>
                                 <td field-key='description'>{{ $notice->description }}</td>
+                                <td field-key='from-date'>{{ $notice->from_date }}</td>
+                                <td field-key='to-date'>{{ $notice->to_date }}</td>
+                                <td field-key='user_type'>{{ $notice->user_type }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('notice_delete')

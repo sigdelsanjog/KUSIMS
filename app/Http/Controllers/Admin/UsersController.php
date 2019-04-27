@@ -20,6 +20,7 @@ class UsersController extends Controller
      */
     public function index()
     {
+        
         // if (! Gate::allows('users_manage')) {
         //     return abort(401);
         // }

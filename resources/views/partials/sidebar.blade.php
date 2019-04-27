@@ -29,17 +29,21 @@
             </ul>
          </li>
          @endcan
+
          <li class="nav-item">
             <a class="nav-link active" href="/profile">
             <i class="nav-icon fas fa-user text-warning"></i> Profile
             </a>
          </li>
+         
+         @can('notice_access')
          <li class="nav-item">
             <a class="nav-link active" href="/notice">
             <i class="nav-icon fas fa-bullhorn text-info"></i> Notice
             </a>
          </li>
-
+         @endcan
+         
          @can('setting_access')
          <li class="nav-divider"></li>
          <li class="nav-title">Settings</li>
@@ -113,7 +117,7 @@
 
 
 
-@can('hostel_access')
+         @can('hostel_access')
          <li class="nav-item">
             <a class="nav-link" href="{{route('busAdmin')}}">
             <i class="nav-icon fas fa-bus text-success"></i></i>BUS</a>

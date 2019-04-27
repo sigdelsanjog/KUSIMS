@@ -27,7 +27,7 @@
                     <i class="fas fa-user"></i> Profile
                 </a>
                 <div class="divider"></div>
-                <a class="dropdown-item" href="/password">
+                <a class="dropdown-item" href="/change_password">
                     <i class="fas fa-key"></i> Password
                 </a>
                 <div class="divider"></div>

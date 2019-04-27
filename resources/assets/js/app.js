@@ -11,7 +11,9 @@ import Vue from "vue"
 import BootstrapVue from 'bootstrap-vue'
 
 import VeeValidate from 'vee-validate';
-import Snotify, { SnotifyPosition } from 'vue-snotify'
+import Snotify, { SnotifyPosition } from 'vue-snotify';
+
+import moment from 'moment';
 
 const config = {
   aria: true,
@@ -32,6 +34,7 @@ const config = {
 Vue.use(VeeValidate, config);
 
 Vue.use(BootstrapVue);
+Vue.use(moment);
 
 window.Vue = require('vue');
 
@@ -61,5 +64,10 @@ Vue.component('hostel-assign', require('./components/HostelAssign.vue'));
 Vue.component('student-marks', require('./components/StudentMarks.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    filters: {
+      moment: function (date) {
+        return moment(date).format('MMMM Do YYYY, h:mm:ss a');
+      }
+    }
 });

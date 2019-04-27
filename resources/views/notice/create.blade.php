@@ -20,16 +20,18 @@
                        </p>
                    @endif
                </div>
-               <div class="form-group">
+
+                <div class="form-group frdate">
                     
                     {!! Form::label('from_date', trans('global.notice.fields.from-date').'*', ['class' => 'control-label']) !!}
               
-                    <div class="input-group date" id="from_date" data-target-input="nearest">
+                    <div class="input-group date datetimepicker" id="from_date" data-target-input="nearest">
                         <input id="from_date" name="from_date" type="text" class="form-control datetimepicker-input" data-target="#from_date"/>
                         <div class="input-group-append" data-target="#from_date" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
                     </div>
+
                     <p class="help-block"></p>
                         @if($errors->has('from_date'))
                             <p class="help-block">
@@ -40,7 +42,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('to_date', trans('global.notice.fields.to-date').'*', ['class' => 'control-label']) !!}
-                    <div class="input-group date" id="to_date" data-target-input="nearest">
+                    <div class="input-group date datetimepicker" id="to_date" data-target-input="nearest">
                         <input id="to_date" name="to_date" type="text" class="form-control datetimepicker-input" data-target="#to_date"/>
                         <div class="input-group-append" data-target="#to_date" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -54,16 +56,6 @@
                     @endif
                 </div>  
                <div class="form-group">
-                   {!! Form::label('description', trans('global.notice.fields.description').'', ['class' => 'control-label']) !!}
-                   {!! Form::text('description', old('description'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                   <p class="help-block"></p>
-                   @if($errors->has('description'))
-                       <p class="help-block">
-                           {{ $errors->first('description') }}
-                       </p>
-                   @endif
-               </div>
-               <div class="form-group">
                     {!! Form::label('user_type', trans('global.notice.fields.user-type').'*', ['class' => 'control-label']) !!}
                     {!! Form::select('user_type', $enum_user_type, old('user_type'), ['class' => 'form-control select2', 'required' => '']) !!}
                     <p class="help-block"></p>
@@ -73,7 +65,16 @@
                         </p>
                     @endif
                 </div>
-                         
+                <div class="form-group">
+                   {!! Form::label('description', trans('global.notice.fields.description').'', ['class' => 'control-label']) !!}
+                   {!! Form::textarea('description', old('description'), ['class' => 'form-control', 'placeholder' => '','rows' => 2, 'cols' => 40]) !!}
+                   <p class="help-block"></p>
+                   @if($errors->has('description'))
+                       <p class="help-block">
+                           {{ $errors->first('description') }}
+                       </p>
+                   @endif
+               </div>    
        </div>
    </div>
 
@@ -85,23 +86,32 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
     
     <script>
+
+           
+                   
+
         $(function(){
             moment.updateLocale('{{ App::getLocale() }}', {
                 week: { dow: 1 } // Monday is the first day of the week
             });
-            
-            $('#to_date').datetimepicker({
-                format: 'L',
-                keepOpen: false,
-            });
+
             $('#from_date').datetimepicker({
+                minDate:moment(),
                 format: 'L',
                 keepOpen: false,
             });
 
-            
-            
+            $('#to_date').datetimepicker({
+                minDate:moment(),
+                format: "L",
+                keepOpen: false,
+            });
+            $('#from_date').on('change.datetimepicker', function(e) {
+                $('#to_date').datetimepicker('minDate',  moment(e.date).add(1, 'days') )
+            });
+
         });
+
     </script>
             
 @stop

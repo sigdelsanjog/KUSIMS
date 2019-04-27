@@ -57,7 +57,7 @@ class LoginController extends Controller
         }
         // only allow people with @company.com to login
         if(explode("@", $user->email)[1] !== 'gmail.com'){
-            return redirect()->to('/');
+            return redirect('/login')->withErrors(['Only account with Gmail Can Login! Please contact the Administration']);
         }
         // check if they're an existing user
         $existingUser = User::where('email', $user->email)->first();

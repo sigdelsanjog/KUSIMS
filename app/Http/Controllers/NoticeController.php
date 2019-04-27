@@ -7,6 +7,8 @@ use App\Models\Notice;
 use App\User;
 
 use Auth;
+use Carbon\Carbon;
+use DateTime;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -73,13 +75,13 @@ class NoticeController extends Controller
             'to_date' =>'required|date'
           ]);
 
-        $notice = new notice([
+        $notice = new Notice([
             'user_id' => Auth::user()->id,
             'title'=> $request->post('title'),
             'description'=> $request->post('description'),
             'user_type'=> $request->post('user_type'),
-            'from_date'=> $request->post('from_date'),
-            'to_date'=>$request->post('to_date'),
+            'from_date'=>$request->post('from_date'),
+            'to_date'=> $request->post('to_date')
          ]);
         
         $notice->save();
@@ -99,9 +101,11 @@ class NoticeController extends Controller
         if (! Gate::allows('notice_edit')) {
             return abort(401);
         }
-        $notice = notice::findOrFail($id);
 
-        return view('notice.edit', compact('notice'));
+        $notice = Notice::findOrFail($id);
+       
+        $enum_user_type = User::$enum_user_type;
+        return view('notice.edit', compact('notice','enum_user_type'));
     }
 
     /**
@@ -111,17 +115,34 @@ class NoticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateJobtypesRequest $request, $id)
+    public function update(Request $request, $id)
     {
         if (! Gate::allows('notice_edit')) {
             return abort(401);
         }
-        $notice = notice::findOrFail($id);
-        $notice->update($request->all());
+
+        $request->validate([
+            'title'=>'required',
+            'description'=> 'required',
+            'user_type' => 'required',
+            'from_date' =>'required|date',
+            'to_date' =>'required|date'
+          ]);
+    
+       
+         
+            $notice = Notice::findOrFail($id);
+            $notice->user_id = Auth::user()->id;
+            $notice->title = $request->title;
+            $notice->description = $request->description;
+            $notice->user_type = $request->user_type;
+            $notice->from_date = $request->from_date;
+            $notice->to_date = $request->to_date;
+
+            $notice->save();
 
 
-
-        return redirect()->route('setting.notice.index');
+            return redirect()->route('notice.index')->with('success', 'Notice has been updated');
     }
 
 
