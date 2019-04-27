@@ -113,13 +113,12 @@ Route::post('/hostel/hostel_status', 'HostelBookController@postHostelStatus');
 
 Route::get('/bus/buspage', 'BusController@index')->name('buspage');
 Route::get('/bus/busApply', 'BusController@busApply')->name('busApply');
+Route::get('/bus/busNotice', 'BusController@busNotice')->name('busNotice');
 Route::post('/bus/storeBusApply', 'BusController@storeBusApply')->name('storeBusApply');
 Route::get('/bus/busadmin', 'BusController@busAdmin')->name('busAdmin');
 Route::post('/bus/approveRoute', 'BusController@approveRoute')->name('approveRoute');
 Route::post('/bus/addRoute', 'BusController@addRoute')->name('addRoute');
 
-
-Route::get('/bus/BusStudent', 'HostelBookController@pullHostelBlock');
 
 
 Route::post('/employee/marksupload', 'EmployeesController@bulkStoreMarks');

@@ -84,8 +84,54 @@
                             </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="messages" role="tabpanel">3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+
+
+
+                        <div class="tab-pane" id="messages" role="tabpanel">
+                            <div class="card-body table-responsive">
+                                <table id="userTable" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <!-- <th style="text-align:center;"><input type="checkbox" id="select-all" /></th> -->
+
+                                        <th>Name</th>
+                                        <th>Phone no.</th>
+                                        <th>Email</th>
+                                        <th>Reg no.</th>
+                                        <th>Dept Id</th>
+                                        <th>Batch ID</th>
+                                        <th>Bus Stop</th>
+                                        <th>Bus Route</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    @if (count($BusApplyListStatus0) > 0)
+                                        @foreach ($BusApplyListStatus0 as $BAlist)
+                                            <tr data-entry-id="{{ $BAlist->id }}">
+                                                <!-- <td></td> -->
+
+                                                <td>{{$BAlist->first_name}} {{$BAlist->middle_name}} {{$BAlist->last_name}} </td>
+                                                <td>{{$BAlist->phone}}</td>
+                                                <td>{{$BAlist->email}}</td>
+                                                <td>{{$BAlist->reg_no}}</td>
+                                                <td>{{$BAlist->dept_no}}</td>
+                                                <td>{{$BAlist->batch_id}}</td>
+                                                <td>{{$BAlist->bus_stop}}</td>
+                                                <td>{{$BAlist->route}}</td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="9">@lang('global.app_no_entries_in_table')</td>
+                                        </tr>
+                                    @endif
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
                         <div class="tab-pane" id="busrequest" role="tabpanel">
 
                             <div class="card-body table-responsive">
@@ -106,8 +152,9 @@
                                     </thead>
 
                                     <tbody>
-                                    @if (count($BusApplyList) > 0)
-                                        @foreach ($BusApplyList as $BAlist)
+
+                                    @if (count($BusApplyListStatus1) > 0)
+                                        @foreach ($BusApplyListStatus1 as $BAlist)
                                             <tr data-entry-id="{{ $BAlist->id }}">
                                                 <!-- <td></td> -->
 

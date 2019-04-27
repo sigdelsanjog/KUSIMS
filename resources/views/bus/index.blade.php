@@ -8,16 +8,16 @@
 
         <div class="card-body table-responsive">
             <div class="row">
-                  <div class="col-sm-3"><img src="" width="200px" height="200px"></div>
-                  <div class="col-sm-6">
+                  <div class="col-sm-5"><img src="" width="400px" height="425px"></div>
+                  <div class="col-sm-4">
                                         <div class="card border-info">
-                                <div class="card-header">Card outline</div>
-                                <div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
-                                ex ea commodo consequat.</div>
+                                            <div class="card-header"><strong>Head of Physical Facility</strong></div>
+                                <div class="card-body"><div class="col-sm-5"><img src="{{url('/')}}/ images/mahendra.jpg" width="150" height="180" align="middle"> </div><div class="col-sm-7">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
+                                        ex ea commodo consequat.</div></div>
                                     </div>
 
                                     <div class="card border-info">
-                                <div class="card-header">Card outline</div>
+                                        <div class="card-header"><strong>Coordinator of Bus Facility</strong></div>
                                 <div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
                                 ex ea commodo consequat.</div>
                                     </div>
@@ -30,8 +30,8 @@
                                 <strong>Action</strong>
                                 </div>
                                 <div class="card-body">
-                                <button class="btn btn-success btn-lg btn-block" type="button">Notice</button>
-                                    <button class="btn btn-info btn-lg btn-block" type="button"><a href="{{route('busApply')}}">Apply New</a></button>
+                                <button class="btn btn-secondary btn-lg btn-block" type="button"><a href="{{route('busNotice')}}">Notice</a></button>
+                                <button class="btn btn-secondary btn-lg btn-block" type="button"><a href="{{route('busApply')}}">Apply New</a></button>
                                 <button class="btn btn-secondary btn-lg btn-block" type="button">Payment</button>
                                 </div>
                                 </div>
