@@ -13,8 +13,8 @@
     @can('notice_delete')
     <p>
         <ul class="list-inline">
-            <li><a href="{{ route('notice.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('notice.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
+            <li class="list-inline-item"><a href="{{ route('notice.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
+            <li class="list-inline-item"><a href="{{ route('notice.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
         </ul>
     </p>
     @endcan
