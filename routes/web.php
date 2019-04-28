@@ -134,4 +134,9 @@ Route::post('/employee/marksupload', 'EmployeesController@bulkStoreMarks');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('notice', 'NoticeController');
+
+    Route::post('notice_mass_destroy', ['uses' => 'NoticeController@massDestroy', 'as' => 'notice.mass_destroy']);
+    Route::post('notice_restore/{id}', ['uses' => 'NoticeController@restore', 'as' => 'notice.restore']);
+    Route::delete('notice_perma_del/{id}', ['uses' => 'NoticeController@perma_del', 'as' => 'notice.perma_del']);
+    
 });
