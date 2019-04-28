@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Mode\BusAdmin;
+use App\Models\BusNotice;
 use App\Models\BusRoute;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Bus;
+
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class BusController extends Controller
 {
@@ -31,7 +35,14 @@ class BusController extends Controller
         return view('bus.busNotice');
     }
 
-       public function storeBusApply(Request $request){
+    public function routeApply(){
+        return view('bus.routeApply');
+    }
+    public function addNotice(){
+        return view('bus.addNotice');
+    }
+
+    public function storeBusApply(Request $request){
         $firstname = $request->input('firstname');
         $middlename = $request->input('middlename');
         $lastname = $request->input('lastname');
@@ -70,7 +81,7 @@ class BusController extends Controller
 
     public function approveRoute(Request $request){
         $bid = $request->input('bid');
-        $route = $request->input('busroute');
+        $route = $request->input('route');
 
         $updateBus = BusAdmin::find($bid);
         $updateBus->route = $route;
@@ -86,7 +97,38 @@ class BusController extends Controller
         $newRoute->station=$request->input('station');
         $newRoute->bus_no=$request->input('busno');
         $newRoute->save();
+        return redirect('bus/busAdmin');
+    }
 
-        return redirect()->back();
+    public function editRoute($id){
+        $getBusRoute = BusRoute::find($id);
+        return view('bus.editBusRoute')->with('getBusRoute',$getBusRoute);
+    }
+
+    public function delRoute($id){
+        $getBusRoute = BusRoute::find($id);
+        $getBusRoute->delete();
+        return redirect('bus/busAdmin');
+    }
+
+    public function updateRoute(Request $request,$id){
+        $updateBusRoute = BusRoute::find($id);
+        $updateBusRoute->route_name=$request->input('route');
+        $updateBusRoute->station=$request->input('station');
+        $updateBusRoute->bus_no=$request->input('busno');
+        $updateBusRoute->save();
+        return redirect('bus/busAdmin');
+    }
+
+    public function submitNotice(Request $request){
+
+
+        $newNotice = new BusNotice();
+        $newNotice->date=$request->input('date');
+        $newNotice->save();
+        return redirect('bus/busAdmin');
+
+
+
     }
 }

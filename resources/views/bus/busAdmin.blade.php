@@ -20,70 +20,95 @@
                             <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="true">Bus Students</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#busnotice" role="tab" aria-controls="busnotice" aria-selected="true">Bus Notice</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#busrequest" role="tab" aria-controls="busrequest" aria-selected="true">Bus Request</a>
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active show" id="home" role="tabpanel">1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                        <div class="tab-pane" id="profile" role="tabpanel">
-                            <div class="row">
-                            <div class="col-md-6">
-                            {!!  Form::open(['method' => 'POST', 'route' => ['addRoute']])!!}
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="text-input">Route</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" value="" id="route" type="text" name="route" placeholder="Enter Route name">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 col-form-label" for="text-input">Station</label>
-                                <div class="col-md-9">
-                                    <input class="form-control" value="" id="station" type="text" name="station" placeholder="Enter Station">
-                                </div>
-                            </div>
 
-                                <div class="form-group row">
-                                    <label class="col-md-3 col-form-label" for="text-input">Bus no</label>
-                                    <div class="col-md-9">
-                                        <input class="form-control" value="" id="busno" type="text" name="busno" placeholder="Enter Bus no">
+
+
+                        <div class="tab-pane active show" id="home" role="tabpanel">
+                            <div class="card card-default">
+                                <div class="card-body table-responsive">
+                                    <div class="row">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="card-body"><h4>User Profile</h4></div>
+                                            <div class="card-body"><img src="{{ URL::to('/images/mahendra.jpg') }}" width="186" height="200" align="middle"></div>
+                                        </div>
+                                        <div class="col-sm-6" align="middle">
+                                            <h4>Welcome</h4>
+                                            <h2>Mr. Mahendra Kumar Niraula</h2>
+                                            <hr>
+                                            <p><strong>Date of Birth : </strong>April 10, 1977</p>
+                                            <p><strong>Gender : </strong>Male</p>
+                                            <hr>
+                                            <p><strong>Email : </strong>mahendra.niraula@ku.edu.np</p>
+                                            <p><strong>Contact : </strong>9841488156</p>
+                                            <hr>
+                                            <p><strong>Date of Joining : </strong>Jun 6, 1997</p>
+
+
+                                        </div>
+                                        <div class="col-sm-2">
+                                        </div>
                                     </div>
                                 </div>
-
-                                <button type="submit" class="btn btn-primary">Add Route</button>
-                            {!! Form::close() !!}
-                            </div>
-                            <div class="card-body table-responsive  col-md-6">
-                                <table id="userTable" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Route Name</th>
-                                        <th>Station</th>
-                                        <th>Bus No.</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-
-                                    <tbody>
-                                    @if (count($Route) > 0)
-                                        @foreach ($Route as $route)
-                                            <tr data-entry-id="{{$route->id}}">
-                                                <td>{{$route->route_name}}</td>
-                                                <td>{{$route->station}}</td>
-                                                <td>{{$route->bus_no}}</td>
-                                                <td><span><i class="fa fa-edit"></i></span> ! <span><i class="fa fa-eraser"></i></span> </td>
-                                            </tr>
-                                        @endforeach
-                                    @else
-                                        <tr>
-                                            <td colspan="9">@lang('global.app_no_entries_in_table')</td>
-                                        </tr>
-                                    @endif
-                                    </tbody>
-                                </table>
-                            </div>
                             </div>
                         </div>
+
+
+
+
+
+                        <div class="tab-pane" id="profile" role="tabpanel">
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="card-body table-responsive  col-md-6">
+                                    <table id="userTable" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Route Name</th>
+                                            <th>Station</th>
+                                            <th>Bus No.</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        @if (count($Route) > 0)
+                                            @foreach ($Route as $route)
+                                                <tr data-entry-id="{{$route->id}}">
+                                                    <td>{{$route->route_name}}</td>
+                                                    <td>{{$route->station}}</td>
+                                                    <td>{{$route->bus_no}}</td>
+                                                    <td>
+                                                        <span><a href="{{route('editRoute',['id'=>$route->id])}}" title="Edit Route"> <i class="fa fa-edit" ></i></a></span> !
+                                                        <span><a href="{{route('delRoute',['id'=>$route->id])}}" title="Delete Route"><i class="fa fa-eraser"></i></a></span>
+                                                    </td>
+
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="9">@lang('global.app_no_entries_in_table')</td>
+                                            </tr>
+                                        @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                <div>
+                                    <button class="btn btn-secondary btn-lg btn-block" type="button" style="width:200px;margin:0 50%;position:relative;left:+70px"><a href="{{route('routeApply')}}">Add Route</a></button>
+                                </div>
+                            </div>
+                        </div>
+
+
 
 
 
@@ -131,6 +156,44 @@
                             </div>
 
                         </div>
+
+
+
+
+                        <div class="tab-pane" id="busnotice" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card-body table-responsive  col-md-6">
+                                        <table id="userTable" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Notice</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>2019/04/25</td>
+                                                    <td><a href="{{route('busNotice')}}">Notice for Bus Students</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2019/04/15</td>
+                                                    <td><a href="{{route('busNotice')}}">Notice for Bus Students</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="{{route('addNotice')}}"><button class="btn btn-secondary btn-lg btn-block" type="button" style="width:200px;margin:0 50%;position:relative;left:+70px">Add Notice</button></a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
 
                         <div class="tab-pane" id="busrequest" role="tabpanel">
 
