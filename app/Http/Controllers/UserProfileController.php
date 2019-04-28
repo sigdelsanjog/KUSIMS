@@ -38,6 +38,9 @@ class UserProfileController extends Controller
                      'department' => $teacherCourse->department()->pluck('name'),
                      'course' => $teacherCourse->course()->pluck('name'),
                      'course_id' => $teacherCourse->course()->pluck('id')->first(),
+                     'batch_id' => $teacherCourse->batch()->pluck('id')->first(),
+                     'program_id' => $teacherCourse->program()->pluck('id')->first(),
+                     'dept_id' => $teacherCourse->department()->pluck('id')->first(),
                      'batch' => $teacherCourse->batch()->pluck('year'),
                    ];
         })->toArray();

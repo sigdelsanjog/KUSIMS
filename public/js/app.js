@@ -42428,6 +42428,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["teacherId"],
@@ -42436,9 +42449,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    marksUpload: function marksUpload(index, id) {
-      this.course_id = id;
+    marksUpload: function marksUpload(index, item) {
+      this.model.course_id = item.course_id;
+      this.model.batch_id = item.batch_id;
+      this.model.dept_id = item.dept_id;
+      this.model.program_id = item.program_id;
       this.$refs.myModalRef.show();
+      console.log(item);
     },
     onFileChange: function onFileChange(e) {
       var file = e.target.files[0];
@@ -42453,7 +42470,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return 0;
       }
       formdata.append("file", this.uploadFile);
-      formdata.append("course_id", this.course_id);
+      formdata.append("model", JSON.stringify(this.model));
       axios.post("/employee/marksupload", formdata, {
         headers: {
           "Content-Type": "multipart/form-data"
@@ -42465,11 +42482,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(e);
       });
     },
-    pullCourse: function pullCourse() {
+    viewMarks: function viewMarks(item) {
       var _this2 = this;
 
+      axios.get("employee/getStudentMarks/" + item.batch_id + "/" + item.course_id + "/" + item.program_id + "/" + item.dept_id).then(function (response) {
+        _this2.$refs["modalMarks"].show();
+        _this2.markList = response.data;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    pullCourse: function pullCourse() {
+      var _this3 = this;
+
       axios.get("profile/teacher/course/" + this.teacherId).then(function (response) {
-        _this2.items = response.data;
+        _this3.items = response.data;
       }).catch(function (error) {
         console.log(error);
       });
@@ -42477,20 +42504,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
+      markList: [],
       fields: [
       // A virtual column that doesn't exist in items
       { key: "index", label: "Action" },
       // A column that needs custom formatting
       { key: "program", label: "Program" }, { key: "department", label: "Department" },
       // A virtual column made up from two fields
-      { key: "course", label: "Course" }, { key: "batch", label: "Batch" }],
+      { key: "course", label: "Course" }, { key: "batch", label: "Batch" }, { key: "viewmarks", label: "View Marks" }],
       uploadFile: null,
       modalShow: false,
       items: null,
       course_id: null,
-      model: {
-        id: this.teacherId
-      }
+      batch_id: null,
+      dept_id: null,
+      model: {}
     };
   }
 });
@@ -105903,7 +105931,30 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('form', {
+  return _c('div', [_c('b-modal', {
+    ref: "modalMarks",
+    attrs: {
+      "hide-footer": "",
+      "title": "Student Marks"
+    }
+  }, [_c('div', {
+    staticClass: "d-block text-center"
+  }, [_c('b-table', {
+    attrs: {
+      "emptyText": "Marks not assigned to student",
+      "bordered": "",
+      "striped": "",
+      "hover": "",
+      "items": _vm.markList,
+      "show-empty": ""
+    },
+    scopedSlots: _vm._u([{
+      key: "empty",
+      fn: function(scope) {
+        return [_c('h4', [_vm._v(_vm._s(scope.emptyText))])]
+      }
+    }])
+  })], 1)]), _vm._v(" "), _c('form', {
     attrs: {
       "data-vv-scope": "course-modal",
       "autocomplete": "off"
@@ -105987,10 +106038,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           },
           on: {
             "click": function($event) {
-              return _vm.marksUpload(data.index, data.item.course_id)
+              return _vm.marksUpload(data.index, data.item)
             }
           }
         }, [_vm._v("Marks Upload")])])
+      }
+    }, {
+      key: "viewmarks",
+      fn: function(data) {
+        return _c('div', {}, [_c('button', {
+          staticClass: "btn btn-sm btn-info",
+          attrs: {
+            "type": "button"
+          },
+          on: {
+            "click": function($event) {
+              return _vm.viewMarks(data.item)
+            }
+          }
+        }, [_vm._v("View Marks")])])
       }
     }])
   }), _vm._v(" "), _c('vue-snotify')], 1)

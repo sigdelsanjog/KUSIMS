@@ -8,6 +8,9 @@ use App\Models\Department;
 use App\Models\TeacherCourse;
 use App\Imports\MarksImport;
 
+use App\Models\Marks;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
@@ -264,12 +267,41 @@ class EmployeesController extends Controller
     public function bulkStoreMarks(Request $request)
     {    
         if($request->hasFile('file')){
+
+            $model = $request->input('model');
+
+            $data = json_decode($request->input('model'), true);
+
             $fileData = $request->file('file');
             $export = new MarksImport();
-            $export->setParameter($request['course_id']);
+            $export->setParameter($data['course_id'],$data['batch_id'],$data['dept_id'],$data['program_id']);
           
             Excel::import($export, $request->file('file'));
             
         }
     }
+
+    public function getStudentMarks($batch_id, $course_id, $program_id, $dept_id)
+    {
+        $marks = Marks::where([
+            ['batch_id', '=', $batch_id],
+            ['course_id', '=', $course_id],
+            ['program_id', '=', $program_id],
+            ['dept_id', '=', $dept_id]
+        ])->get();
+        
+        $marks = $marks->map(function ($mark) 
+        {
+            return [ 
+                   
+                     'first_name' => $mark->student()->pluck('first_name')->first(),
+                     'last_name' => $mark->student()->pluck('last_name')->first(),
+                     'attendance' => $mark->attendance,
+                     'marks' => $mark->marks 
+                   ];
+        })->toArray();
+        
+        return response()->json($marks);
+    }
+
 }

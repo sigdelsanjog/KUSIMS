@@ -13,10 +13,16 @@ class MarksImport implements ToCollection,WithHeadingRow
 {
     
     private $course_id;
+    private $batch_id;
+    private $dept_id;
+    private $program_id;
     
-    public function setParameter(int $course_id)
+    public function setParameter($course_id,$batch_id,$dept_id,$program_id)
     {
         $this->course_id = $course_id;
+        $this->batch_id = $batch_id;
+        $this->dept_id = $dept_id;
+        $this->program_id = $program_id;
     }
     public function collection(Collection $rows)
     {
@@ -25,18 +31,24 @@ class MarksImport implements ToCollection,WithHeadingRow
             $mark = new Marks();
             
             $student = Student::where('reg_no', $row['registration_no'])->first();
-    
             if(!is_null($student))
             {
-
-                Marks::updateOrCreate(
-                    ['student_id' => $student->id, 'course_id' => $this->course_id], 
+                
+                    Marks::updateOrCreate(
+                    [
+                        'student_id' => $student->id, 'course_id' => $this->course_id
+                    ],
                     [
                         'student_id'     => $student->id,
                         'marks' => $row['marks'],
                         'attendance'    => $row['attendance'],
-                        'course_id'  => $this->course_id
-                    ]);
+                        'course_id'  => $this->course_id,
+                        'batch_id'  => $this->batch_id,
+                        'dept_id'  => $this->dept_id,
+                        'program_id'  => $this->program_id
+                    ]
+                );
+                
                 
             }
             

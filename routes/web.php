@@ -121,6 +121,10 @@ Route::post('/bus/addRoute', 'BusController@addRoute')->name('addRoute');
 
 
 
+// Route::get('/employee/getStudentMarks/{id}', 'StudentsController@getStudentMarks');
+
+Route::get('/employee/getStudentMarks/{student_id}/{dept_id}/{batch_id}/{program_id}','EmployeesController@getStudentMarks');
+
 Route::post('/employee/marksupload', 'EmployeesController@bulkStoreMarks');
 
 // Route::group(['middleware'=> 'web'],function(){

@@ -1,5 +1,15 @@
 <template>
   <div>
+    <b-modal ref="modalMarks" hide-footer title="Student Marks">
+      <div class="d-block text-center">
+        <b-table emptyText="Marks not assigned to student" bordered striped hover :items="markList" show-empty>
+          <template slot="empty" slot-scope="scope">
+            <h4>{{ scope.emptyText }}</h4>
+          </template>
+        </b-table>
+      </div>
+    </b-modal>
+
     <form
       @submit.stop.prevent="formSubmit('course-modal')"
       data-vv-scope="course-modal"
@@ -36,8 +46,11 @@
         <button
           type="button"
           class="btn btn-sm btn-danger"
-          @click="marksUpload(data.index, data.item.course_id)"
+          @click="marksUpload(data.index, data.item)"
         >Marks Upload</button>
+      </div>
+      <div slot="viewmarks" slot-scope="data">
+        <button type="button" class="btn btn-sm btn-info" @click="viewMarks(data.item)">View Marks</button>
       </div>
     </b-table>
     <vue-snotify/>
@@ -51,9 +64,13 @@ export default {
     this.pullCourse();
   },
   methods: {
-    marksUpload: function(index, id) {
-      this.course_id = id;
+    marksUpload(index, item) {
+      this.model.course_id = item.course_id;
+      this.model.batch_id = item.batch_id;
+      this.model.dept_id = item.dept_id;
+      this.model.program_id = item.program_id;
       this.$refs.myModalRef.show();
+      console.log(item);
     },
     onFileChange(e) {
       const file = e.target.files[0];
@@ -66,7 +83,7 @@ export default {
         return 0;
       }
       formdata.append("file", this.uploadFile);
-      formdata.append("course_id", this.course_id);
+      formdata.append("model", JSON.stringify(this.model));
       axios
         .post("/employee/marksupload", formdata, {
           headers: {
@@ -79,6 +96,21 @@ export default {
         })
         .catch(e => {
           console.log(e);
+        });
+    },
+    viewMarks(item) {
+      axios
+        .get(
+          `employee/getStudentMarks/${item.batch_id}/${item.course_id}/${
+            item.program_id
+          }/${item.dept_id}`
+        )
+        .then(response => {
+          this.$refs["modalMarks"].show();
+          this.markList = response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
         });
     },
     pullCourse() {
@@ -94,6 +126,7 @@ export default {
   },
   data() {
     return {
+      markList: [],
       fields: [
         // A virtual column that doesn't exist in items
         { key: "index", label: "Action" },
@@ -102,15 +135,16 @@ export default {
         { key: "department", label: "Department" },
         // A virtual column made up from two fields
         { key: "course", label: "Course" },
-        { key: "batch", label: "Batch" }
+        { key: "batch", label: "Batch" },
+        { key: "viewmarks", label: "View Marks" }
       ],
       uploadFile: null,
       modalShow: false,
       items: null,
       course_id: null,
-      model: {
-        id: this.teacherId
-      }
+      batch_id: null,
+      dept_id: null,
+      model: {}
     };
   }
 };

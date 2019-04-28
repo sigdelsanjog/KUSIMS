@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<b-card>
+      <b-card>
         <div class="row">
           <div class="col-lg-3 pb-5">
             <!-- Account Sidebar-->
@@ -23,7 +23,7 @@
                 <b-list-group-item
                   class="d-flex justify-content-between align-items-center"
                 >Deparment
-                  <b-badge variant="info" pill>{{Auth::user()->employee ? Auth::user()->employee->department->name : "Not Defined"}}</b-badge>
+                <b-badge variant="info" pill>{{Auth::user()->employee ? (Auth::user()->employee->department ? Auth::user()->employee->department->name : "Not Defined"):""}}</b-badge>
                 </b-list-group-item>
               </b-list-group>
             </div>
@@ -70,12 +70,13 @@
 					</div>
         </div>
       </b-card>
-      <b-card>
-        @if(!is_null(Auth::user()->employee)){
+      @if(Auth::user()->employee->job_id=="1")         
+        <b-card>
           <teachercourses teacher-id="{{Auth::user()->employee->id}}"/> 
-        } 
-        @endif
-      </b-card>
+        </b-card>
+      @else
+           
+      @endif
 @endsection
 <style scoped>
 body {

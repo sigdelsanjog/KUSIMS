@@ -15,8 +15,10 @@
             :items="{{ json_encode($notices) }}">
             <template slot="created_by.name" slot-scope="data">
               <p class="media-body pb-3 mb-0 small">
-                <h3 class="d-block text-gray-dark">@{{data.item.title}}, <span class="badge badge-light">@{{data.item.created_at | moment}}</span></h3>
-                @{{data.item.description}} 
+                <h3 class="d-block text-gray-dark">@{{data.item.title}}</h3> <span class="badge badge-light">@{{data.item.created_at | moment}}</span>
+              </p>
+              <p>
+              @{{data.item.description}} 
               </p>
               <p class="text-muted">
                 Posted By: <a href="#" class="font-italic text-reset">@{{data.item.created_by.name}}</a>.

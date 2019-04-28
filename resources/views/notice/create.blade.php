@@ -67,7 +67,7 @@
                 </div>
                 <div class="form-group">
                    {!! Form::label('description', trans('global.notice.fields.description').'', ['class' => 'control-label']) !!}
-                   {!! Form::textarea('description', old('description'), ['class' => 'form-control', 'placeholder' => '','rows' => 2, 'cols' => 40]) !!}
+                   {!! Form::textarea('description', old('description'), ['class' => 'form-control', 'placeholder' => '','rows' => 6, 'cols' => 60]) !!}
                    <p class="help-block"></p>
                    @if($errors->has('description'))
                        <p class="help-block">
