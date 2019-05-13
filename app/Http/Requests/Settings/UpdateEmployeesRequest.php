@@ -26,7 +26,8 @@ class UpdateEmployeesRequest extends FormRequest
             
             'first_name' => 'required',
             'last_name' => 'required',
-            'job_id' => 'required'
+            'job_id' => 'required',
+            'email' => 'email'
         ];
     }
 }

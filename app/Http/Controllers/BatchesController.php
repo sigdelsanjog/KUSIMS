@@ -45,7 +45,13 @@ class BatchesController extends Controller
         if (! Gate::allows('batch_create')) {
             return abort(401);
         }
-        return view('batches.create');
+        $month = [ 
+            [ "id" => 1, "month" => 'January' ],
+            [ "id" => 2, "month" => 'February' ]
+        ];
+        $months =  Batch::month();
+
+        return view('batches.create',compact('months'));
     }
 
     /**

@@ -34,7 +34,6 @@
                         @endcan
 
                         <th>@lang('global.notice.fields.title')</th>
-                        <th>@lang('global.notice.fields.description')</th>
                         <th>@lang('global.notice.fields.from-date')</th>
                         <th>@lang('global.notice.fields.to-date')</th>
                         <th>Notice For</th>
@@ -53,9 +52,7 @@
                                 @can('notice_delete')
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
-
                                 <td field-key='title'>{{ $notice->title }}</td>
-                                <td field-key='description'>{{ $notice->description }}</td>
                                 <td field-key='from-date'>{{ $notice->from_date }}</td>
                                 <td field-key='to-date'>{{ $notice->to_date }}</td>
                                 <td field-key='user_type'>{{ $notice->user_type }}</td>
@@ -82,9 +79,6 @@
                                 </td>
                                 @else
                                 <td>
-                                    @can('notice_view')
-                                    <a href="{{ route('notice.show',[$notice->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
-                                    @endcan
                                     @can('notice_edit')
                                     <a href="{{ route('notice.edit',[$notice->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
                                     @endcan

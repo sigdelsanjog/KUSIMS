@@ -61,7 +61,9 @@
                 </div>
                 <div class="form-group">
                    {!! Form::label('description', trans('global.notice.fields.description').'', ['class' => 'control-label']) !!}
-                   {!! Form::textarea('description', old('description'), ['class' => 'form-control', 'placeholder' => '','rows' => 6, 'cols' => 60]) !!}
+                   <textarea id="description" class="description" name="description">
+                    {!!$notice->description!!}
+                   </textarea>
                    <p class="help-block"></p>
                    @if($errors->has('description'))
                        <p class="help-block">
@@ -79,9 +81,15 @@
 @section('javascript')
     @parent
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
     <script>
         $(function(){
+            $('.description').summernote({
+            height: 300,   //set editable area's height
+                codemirror: { // codemirror options
+                    theme: 'monokai'
+                }
+            });
             moment.updateLocale('{{ App::getLocale() }}', {
                 week: { dow: 1 } // Monday is the first day of the week
             });

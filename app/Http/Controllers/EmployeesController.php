@@ -77,8 +77,25 @@ class EmployeesController extends Controller
         if (! Gate::allows('employee_create')) {
             return abort(401);
         }
-        $employee = Employee::create($request->all());
 
+        $user = new \App\User();
+        $user->name = $request['first_name'].' '.$request['last_name'];
+        $user->first_name = $request['first_name'];
+        $user->last_name = $request['last_name'];
+        $user->user_type = "Employee";
+        $user->email = $request['email'];
+        $user->password = "employee@123";
+
+
+        $roles = [];
+        $user->assignRole($roles);
+
+        $user->save();
+
+    
+       
+        
+        $user->employee()->create($request->all());
 
 
         return redirect()->route('setting.employees.index');
@@ -101,7 +118,8 @@ class EmployeesController extends Controller
         $deptsComp = Department::get()->pluck('name', 'id');
         $depts = Department::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
 
-        $batches = \App\Models\Batch::get()->pluck('year', 'id');
+        $batches = \App\Models\Batch::get()->pluck('month_year', 'id');
+
         $programs = \App\Models\Program::get()->pluck('name', 'id');
         $courses = \App\Models\Course::get(['code','name','id']);
 
@@ -293,7 +311,7 @@ class EmployeesController extends Controller
         $marks = $marks->map(function ($mark) 
         {
             return [ 
-                   
+                     'registration_no' => $mark->student()->pluck('reg_no')->first(),
                      'first_name' => $mark->student()->pluck('first_name')->first(),
                      'last_name' => $mark->student()->pluck('last_name')->first(),
                      'attendance' => $mark->attendance,

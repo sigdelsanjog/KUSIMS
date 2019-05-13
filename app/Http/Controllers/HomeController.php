@@ -41,7 +41,7 @@ class HomeController extends Controller
         $notices = $notices->load('created_by');
 
         $fields = '{
-            "created_by": { "key": "created_by.name","label": "Recent updates", "sortable": true },
+            "description": { "key": "description","label": "Recent updates", "sortable": true },
             
             }';        
         return view('home', compact('notices','fields'));

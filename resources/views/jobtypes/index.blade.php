@@ -76,9 +76,6 @@
                                 </td>
                                 @else
                                 <td>
-                                    @can('jobtype_view')
-                                    <a href="{{ route('setting.jobtypes.show',[$jobtype->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
-                                    @endcan
                                     @can('jobtype_edit')
                                     <a href="{{ route('setting.jobtypes.edit',[$jobtype->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
                                     @endcan

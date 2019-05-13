@@ -24,7 +24,8 @@ class StoreCoursesRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'code' => 'required',
+            'code' => 'required|unique:course,code,'.\Request::get('id'),
+            'credit' => 'required',
         ];
     }
 }

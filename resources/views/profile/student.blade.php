@@ -119,7 +119,7 @@
                   </table>
                </b-card>
                <b-card title="Hostel">
-                     @if(is_null(Auth::user()->student->hostel))
+                     @if(Auth::user()->student->hostel->isEmpty()) 
                      <b-list-group-item class="d-flex justify-content-between align-items-left">
                         <b-button variant="success" href="{{ route('hostel.book.store') }}" 
                         onclick="event.preventDefault(); 
@@ -132,6 +132,7 @@
                                     <td>Hostel Status</td>
                                     <td>Room</td>
                                     <td>Block</td>
+                                    <td>Remarks</td>
                                  </tr>
                               </thead>
                               <tbody>
@@ -140,7 +141,7 @@
                                     <td>{{ $hos->hostelStatus($hos->status) }}</td>
                                     <td>{{ $hos->hostel ? $hos->hostel->room : "" }}</td>
                                     <td>{{ $hos->hostel ? $hos->hostel->block->name : "" }}</td>
-                                    
+                                    <td>{{ $hos->remarks }}</td>
                                  </tr>
                                  @endforeach
                               </tbody>
