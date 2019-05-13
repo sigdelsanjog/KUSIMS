@@ -114,11 +114,21 @@ Route::post('/hostel/hostel_status', 'HostelBookController@postHostelStatus');
 
 Route::get('/bus/buspage', 'BusController@index')->name('buspage');
 Route::get('/bus/busApply', 'BusController@busApply')->name('busApply');
-Route::get('/bus/busNotice', 'BusController@busNotice')->name('busNotice');
 Route::post('/bus/storeBusApply', 'BusController@storeBusApply')->name('storeBusApply');
-Route::get('/bus/busadmin', 'BusController@busAdmin')->name('busAdmin');
+
 Route::post('/bus/approveRoute', 'BusController@approveRoute')->name('approveRoute');
 Route::post('/bus/addRoute', 'BusController@addRoute')->name('addRoute');
+Route::get('/bus/editRoute/{id}', 'BusController@editRoute')->name('editRoute');
+Route::post('/bus/updateRoute/{id}', 'BusController@updateRoute')->name('updateRoute');
+Route::get('/bus/delRoute/{id}', 'BusController@delRoute')->name('delRoute');
+Route::get('/bus/busNotice', 'BusController@busNotice')->name('busNotice');
+
+
+Route::get('/bus/busAdmin', 'BusController@busAdmin')->name('busAdmin');
+Route::get('/bus/routeApply', 'BusController@routeApply')->name('routeApply');
+Route::get('/bus/addNotice', 'BusController@addNotice')->name('addNotice');
+
+Route::post('/bus/submitNotice', 'BusController@submitNotice')->name('submitNotice');
 
 
 
