@@ -81,7 +81,7 @@ class BusController extends Controller
 
     public function approveRoute(Request $request){
         $bid = $request->input('bid');
-        $route = $request->input('route');
+        $route = $request->input('busroute');
 
         $updateBus = BusAdmin::find($bid);
         $updateBus->route = $route;
@@ -120,14 +120,21 @@ class BusController extends Controller
         return redirect('bus/busAdmin');
     }
 
+
     public function submitNotice(Request $request){
 
+        $cover = $request->file('fileImage');
+        $extension = $cover->getClientOriginalExtension();
+        Storage::disk('public')->put($cover->getFilename().'.'.$extension,  File::get($cover));
 
         $newNotice = new BusNotice();
         $newNotice->date=$request->input('date');
+        $newNotice->noticetitle=$request->input('title');
+        $newNotice->mime = $cover->getClientMimeType();
+        $newNotice->original_filename = $cover->getClientOriginalName();
+        $newNotice->filename = $cover->getFilename().'.'.$extension;
         $newNotice->save();
-        return redirect('bus/busAdmin');
-
+        return redirect('bus/busAdmin')->with('success','Notice added successfully...');
 
 
     }

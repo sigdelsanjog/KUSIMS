@@ -12,7 +12,8 @@
                 <div class="card-header">
                     <strong>Bus Notice Add Form</strong></div>
                 <div class="col-md-7">
-                    {!!  Form::open(['method' => 'POST', 'route' => ['submitNotice']])!!}
+                    {!!  Form::open(['method' => 'POST', 'route' => ['submitNotice'] , 'enctype'=>'multipart/form-data'])!!}
+                    {{ csrf_field() }}
                     <div class="form-group row">
                         <label class="col-md-5 col-form-label" for="text-input">Date</label>
                         <div class="col-md-8">
@@ -28,7 +29,7 @@
                     <div class="form-group row">
                         <label class="col-md-5 col-form-label" for="file">Notice File</label>
                         <div class="col-md-8">
-                            <input class="form-control" value="" id="filetitle" type="file" name="filetitle"/>
+                            <input type="file" class="form-control" name="fileImage"/>
                         </div>
                     </div>
 

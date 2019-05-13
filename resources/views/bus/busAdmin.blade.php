@@ -270,7 +270,7 @@
                             <select class="form-control" id="busroute" name="busroute">
                                 @if(isset($Route))
                                     @foreach($Route as $route)
-                                <option value="{{$route->route_name}}}">{{$route->route_name}}</option>
+                                <option value="{{$route->route_name}}">{{$route->route_name}}</option>
                                     @endforeach
                                     @endif
                             </select>
