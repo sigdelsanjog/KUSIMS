@@ -2,6 +2,7 @@
 namespace App\Http\Requests\Settings;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCoursesRequest extends FormRequest
 {
@@ -25,7 +26,8 @@ class UpdateCoursesRequest extends FormRequest
         return [
             
             'name' => 'required',
-            'code' => 'required',
+            'code' => ['required','unique:course,code,' . $this->course],
+            'credit' => 'required',
         ];
     }
 }

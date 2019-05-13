@@ -22,7 +22,17 @@
                                 </p>
                             @endif
                         </div>
-
+                        <div class="form-group">
+                            {!! Form::label('month', trans('global.batch.fields.month').'*', ['class' => 'control-label']) !!}
+                     
+                            {!! Form::select('month', $months, old('month'), ['class' => 'form-control select2', 'required' => '']) !!}
+                            <p class="help-block"></p>
+                            @if($errors->has('month'))
+                                <p class="help-block">
+                                    {{ $errors->first('month') }}
+                                </p>
+                            @endif
+                        </div>
                         <div class="form-group">
                             {!! Form::label('description', trans('global.batch.fields.description').'', ['class' => 'control-label']) !!}
                             {!! Form::textarea('description', old('description'), ['class' => 'form-control ', 'placeholder' => '','rows'=>'2']) !!}

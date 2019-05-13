@@ -13,18 +13,18 @@
             bordered
             :fields="{{$fields}}"
             :items="{{ json_encode($notices) }}">
-            <template slot="created_by.name" slot-scope="data">
+            <template slot="description" slot-scope="{value, item}">
               <p class="media-body pb-3 mb-0 small">
-                <h3 class="d-block text-gray-dark">@{{data.item.title}}</h3> <span class="badge badge-light">@{{data.item.created_at | moment}}</span>
+                <h3 class="d-block text-gray-dark">@{{item.title}}</h3> <span class="badge badge-light">@{{item.created_at | moment}}</span>
               </p>
               <p>
-              @{{data.item.description}} 
+                <span v-html="value"></span>
               </p>
               <p class="text-muted">
-                Posted By: <a href="#" class="font-italic text-reset">@{{data.item.created_by.name}}</a>.
+                Posted By: <a href="#" class="font-italic text-reset">@{{item.created_by.name}}</a>.
               </p>
             </template>
-        </b-table>
+          </b-table>
       </div>
     </main>
 @endsection

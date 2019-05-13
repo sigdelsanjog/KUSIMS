@@ -76,14 +76,11 @@
                                 </td>
                                 @else
                                 <td>
-                                    @can('program_view')
-                                    <a href="{{ route('setting.programs.show',[$program->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
-                                    @endcan
                                     @can('program_edit')
                                     <a href="{{ route('setting.programs.edit',[$program->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
                                     @endcan
                                     @can('program_delete')
-{!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",

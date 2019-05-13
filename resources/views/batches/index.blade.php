@@ -34,6 +34,8 @@
                         @endcan
 
                         <th>@lang('global.batch.fields.year')</th>
+                        <th>@lang('global.batch.fields.month')</th>
+
                         <th>@lang('global.batch.fields.description')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
@@ -52,11 +54,13 @@
                                 @endcan
 
                                 <td field-key='year'>{{ $batch->year }}</td>
+                                <td field-key='description'>{!! $batch->getMonthName($batch->month)!!}</td>
+                           
                                 <td field-key='description'>{!! $batch->description !!}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     @can('batch_delete')
-                                                                        {!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'POST',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
@@ -76,9 +80,6 @@
                                 </td>
                                 @else
                                 <td>
-                                    @can('batch_view')
-                                    <a href="{{ route('setting.batches.show',[$batch->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
-                                    @endcan
                                     @can('batch_edit')
                                     <a href="{{ route('setting.batches.edit',[$batch->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
                                     @endcan

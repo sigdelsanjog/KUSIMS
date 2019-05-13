@@ -12,8 +12,8 @@
 
     @can('employee_delete')
         <ul class="list-inline">
-            <li><a href="{{ route('setting.employees.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li>
-            <li><a href="{{ route('setting.employees.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
+            <li  class="list-inline-item"><a href="{{ route('setting.employees.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li>
+            <li  class="list-inline-item"><a href="{{ route('setting.employees.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
         </ul>
     
     @endcan
@@ -85,9 +85,6 @@
                                 </td>
                                 @else
                                 <td>
-                                    @can('employee_view')
-                                    <a href="{{ route('setting.employees.show',[$employee->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
-                                    @endcan
                                     @can('employee_edit')
                                     <a href="{{ route('setting.employees.edit',[$employee->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
                                     @endcan

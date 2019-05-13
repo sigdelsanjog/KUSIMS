@@ -151,7 +151,7 @@ class StudentsController extends Controller
 
 
         $depts =  Department::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
-        $batches = \App\Models\Batch::get()->pluck('year', 'id')->prepend(trans('global.app_please_select'), '');
+        $batches = \App\Models\Batch::get()->pluck('month_year', 'id')->prepend(trans('global.app_please_select'), '');
         $programs = \App\Models\Program::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
 
         return view('manage.students.edit', compact('student', 'enum_gender','batches','depts','programs'));

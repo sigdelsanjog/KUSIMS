@@ -13,6 +13,7 @@ return [
 		'fields' => [
 			'year' => 'Year',
 			'description' => 'Description',
+			'month' => 'Month'
 		],
 	],
 	'permissions' => [
@@ -76,6 +77,7 @@ return [
 			'code' => 'Code',
 			'description' => 'Description',
 			'status' => 'Status',
+			'credit' => 'Credit hrs'
 		],
 	],
 	'student' => [

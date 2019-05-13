@@ -13,8 +13,8 @@
     @can('course_delete')
     <p>
         <ul class="list-inline">
-            <li><a href="{{ route('setting.courses.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('setting.courses.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
+            <li  class="list-inline-item"><a href="{{ route('setting.courses.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
+            <li  class="list-inline-item"><a href="{{ route('setting.courses.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
         </ul>
     </p>
     @endcan
@@ -80,9 +80,6 @@
                                 </td>
                                 @else
                                 <td>
-                                    @can('course_view')
-                                    <a href="{{ route('setting.courses.show',[$course->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
-                                    @endcan
                                     @can('course_edit')
                                     <a href="{{ route('setting.courses.edit',[$course->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
                                     @endcan

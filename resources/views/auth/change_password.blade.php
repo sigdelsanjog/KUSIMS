@@ -13,14 +13,13 @@
     @else
         {!! Form::open(['method' => 'PATCH', 'route' => ['auth.change_password']]) !!}
         <!-- If no success message in flash session show change password form  -->
-        <div class="panel panel-default">
-            <div class="panel-heading">
+        <div class="card card-default">
+            <div class="card-header">
                 @lang('global.app_edit')
             </div>
 
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-12 form-group">
+            <div class="card-body">
+                    <div class="form-group">
                         {!! Form::label('current_password', 'Current password*', ['class' => 'control-label']) !!}
                         {!! Form::password('current_password', ['class' => 'form-control', 'placeholder' => '']) !!}
                         <p class="help-block"></p>
@@ -30,10 +29,7 @@
                             </p>
                         @endif
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 form-group">
+                    <div class="form-group">
                         {!! Form::label('new_password', 'New password*', ['class' => 'control-label']) !!}
                         {!! Form::password('new_password', ['class' => 'form-control', 'placeholder' => '']) !!}
                         <p class="help-block"></p>
@@ -43,10 +39,7 @@
                             </p>
                         @endif
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 form-group">
+                    <div class="form-group">
                         {!! Form::label('new_password_confirmation', 'New password confirmation*', ['class' => 'control-label']) !!}
                         {!! Form::password('new_password_confirmation', ['class' => 'form-control', 'placeholder' => '']) !!}
                         <p class="help-block"></p>
@@ -56,7 +49,6 @@
                             </p>
                         @endif
                     </div>
-                </div>
             </div>
         </div>
 

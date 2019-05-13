@@ -32,6 +32,16 @@
                     @endif
                 </div>
                 <div class="form-group">
+                    {!! Form::label('credit', trans('global.course.fields.credit').'*', ['class' => 'control-label']) !!}
+                    {!! Form::number('credit', old('credit'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('credit'))
+                        <p class="help-block">
+                            {{ $errors->first('credit') }}
+                        </p>
+                    @endif
+                </div>
+                <div class="form-group">
                     {!! Form::label('description', trans('global.course.fields.description').'', ['class' => 'control-label']) !!}
                     {!! Form::text('description', old('description'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
