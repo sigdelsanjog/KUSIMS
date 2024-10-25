@@ -21,7 +21,7 @@
     "@coreui/coreui": "^2.1.7",
     "@fortawesome/fontawesome-free": "^5.7.2",
     "admin-lte": "^3.0.0-alpha.2",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^5.0.0",
     "bootstrap-vue": "^2.0.0-rc.13",
     "bootstrap4-datetimepicker": "^5.2.3",
     "datatables.net-autofill-bs4": "^2.3.2",
